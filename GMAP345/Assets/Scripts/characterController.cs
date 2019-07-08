@@ -7,21 +7,19 @@ public class characterController : MonoBehaviour
     [SerializeField]
     private float speed = 10.0f;
 
-    // Start is called before the first frame update
+    [SerializeField]
+    private Transform arenaPosition;
+
+    private Vector3 moveDirection;
+
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;   
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float translate = Input.GetAxis("Vertical") * speed;
-        float strafe = Input.GetAxis("Horizontal") * speed;
-        translate *= Time.deltaTime;
-        strafe *= Time.deltaTime;
-
-        transform.Translate(strafe, 0, translate);
 
         if (Input.GetKeyDown("escape"))
         {
@@ -29,8 +27,22 @@ public class characterController : MonoBehaviour
         }
     }
 
-    public float Speed
+    private void FixedUpdate()
     {
-        get; set;
+        float translate = Input.GetAxis("Vertical");
+        float strafe = Input.GetAxis("Horizontal");
+
+        moveDirection = new Vector3(strafe, 0, translate);
+
+        transform.Translate(moveDirection.normalized * speed * Time.fixedDeltaTime);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == "Enemy")
+        {
+            gameObject.transform.position = arenaPosition.position;
+        }
+    }
+
 }

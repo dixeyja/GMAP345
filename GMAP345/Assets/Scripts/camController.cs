@@ -18,11 +18,11 @@ public class camController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerCharacter = transform.parent.gameObject;    
+        playerCharacter = transform.parent.gameObject;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector2 mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
 
