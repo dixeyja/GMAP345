@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class enemyBattleBehavior : MonoBehaviour
 {
@@ -8,11 +9,17 @@ public class enemyBattleBehavior : MonoBehaviour
     public float speed;
     public Transform playerCharacter;
     static Animator anim;
+    public Slider healthbar;
+    public combatManager cM;
+
+    private bool justDied = true;
+
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        healthbar.value = healthbar.maxValue;
     }
 
     // Update is called once per frame
@@ -31,6 +38,7 @@ public class enemyBattleBehavior : MonoBehaviour
                 anim.SetBool("isWalking", true);
                 anim.SetBool("isIdle", false);
                 anim.SetBool("isAttacking", false);
+                anim.SetBool("isHit", false);
                 if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
                 {
                     transform.Translate(0, 0, speed * Time.deltaTime);
@@ -41,6 +49,7 @@ public class enemyBattleBehavior : MonoBehaviour
                 anim.SetBool("isAttacking", true);
                 anim.SetBool("isWalking", false);
                 anim.SetBool("isIdle", false);
+                anim.SetBool("isHit", false);
             }
 
 
@@ -50,11 +59,41 @@ public class enemyBattleBehavior : MonoBehaviour
             anim.SetBool("isIdle", true);
             anim.SetBool("isWalking", false);
             anim.SetBool("isAttacking", false);
+            anim.SetBool("isHit", false);
+        }
+
+        if (healthbar.value <= 0)
+        {
+            anim.SetBool("isDead", true);
+            anim.SetBool("isIdle", false);
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isAttacking", false);
+            anim.SetBool("isHit", false);
+            speed = 0;
+            if (justDied)
+            {
+                cM.EndCombat();
+                justDied = false;
+            }
+
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Hit On Enemy Detected");
+        if (other.tag == "PlayerWeapon")
+        {
+            healthbar.value -= other.GetComponentInParent<CharController>().damage;
+            anim.SetBool("isHit", true);
+            anim.SetBool("isIdle", false);
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isAttacking", false);
+            
+        }
+
+
     }
+
+
 }

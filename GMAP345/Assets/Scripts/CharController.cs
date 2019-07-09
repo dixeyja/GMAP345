@@ -1,18 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
-public class characterController : MonoBehaviour
+public class CharController : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 50.0f;
-    public Rigidbody rb;
-    [SerializeField]
-    private Transform arenaPosition;
+    private float speed = 10.0f;
+
+    private Rigidbody rb;
 
     private Vector3 moveDirection;
 
     private bool canWalk;
+
+    public Slider healthbar;
+    public int damage = 10;
+    public TextMeshProUGUI damageTextGUI;
 
     #region Weapon variables
 
@@ -31,13 +37,14 @@ public class characterController : MonoBehaviour
         bladeCollider.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
         canWalk = true;
-        rb.useGravity = true;
-        rb.AddForce(0, -10, 0);
+        rb = GetComponent<Rigidbody>();
+        healthbar.value = healthbar.maxValue;
     }
 
     // Update is called once per frame
     void Update()
     {
+        damageTextGUI.text = damage.ToString();
 
         if (Input.GetKeyDown("escape"))
         {
@@ -54,6 +61,11 @@ public class characterController : MonoBehaviour
         {
             swordAnim.SetBool("isAttacking", false);
             swordAnim.SetBool("isIdle", true);
+        }
+
+        if (healthbar.value <= 0)
+        {
+            SceneManager.LoadScene(0);
         }
     }
 
@@ -90,6 +102,7 @@ public class characterController : MonoBehaviour
         if (collision.transform.tag == "Enemy")
         {
             cManager.EnterCombat();
+            collision.gameObject.SetActive(false);
         }
     }
 
@@ -97,5 +110,17 @@ public class characterController : MonoBehaviour
     public void SetCanWalk(bool b)
     {
         canWalk = b;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "EnemyWeapon")
+        {
+            healthbar.value -= 10;
+        }
+        else if (other.tag == "Pickup")
+        {
+            damage += 10;
+        }
     }
 }

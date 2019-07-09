@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class combatManager : MonoBehaviour
 {
-    public characterController player;
-    public GameObject enemy;
+    public CharController player;
+    public GameObject playerWeapon;
+    public List<GameObject> enemies;
     public Transform playerArenaPostion;
     public Transform enemyArenaPosition;
 
@@ -15,6 +16,8 @@ public class combatManager : MonoBehaviour
 
     public Image blackScreen;
     public float transitionRate = .02f;
+
+    private int encounterNumber = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -34,14 +37,23 @@ public class combatManager : MonoBehaviour
         currentDungeonPosition = player.transform.position;
         currentDungeonRotation = player.transform.rotation;
         player.transform.position = playerArenaPostion.position;
-        enemy.SetActive(true);
-        enemy.transform.position = enemyArenaPosition.position;
+        enemies[encounterNumber].SetActive(true);
+        enemies[encounterNumber].transform.position = enemyArenaPosition.position;
+        playerWeapon.SetActive(true);
     }
 
     public void EndCombat()
     {
-        player.transform.position = currentDungeonPosition;
-        player.transform.rotation = currentDungeonRotation;
+        StartCoroutine("FinishUpCombat");
     }
 
+    IEnumerator FinishUpCombat()
+    {
+        yield return new WaitForSeconds(3);
+        player.transform.position = currentDungeonPosition;
+        player.transform.rotation = currentDungeonRotation;
+        enemies[encounterNumber].SetActive(false);
+        playerWeapon.SetActive(false);
+        encounterNumber++;
+    }
 }

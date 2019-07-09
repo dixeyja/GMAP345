@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class enemyDungeonBehavior : MonoBehaviour
 {
@@ -9,10 +10,13 @@ public class enemyDungeonBehavior : MonoBehaviour
     static Animator anim;
     public float sightRange = 10f;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -36,5 +40,8 @@ public class enemyDungeonBehavior : MonoBehaviour
             anim.SetBool("isWalking", false);
             anim.SetBool("isAttacking", false);
         }
+
+        
     }
+
 }
