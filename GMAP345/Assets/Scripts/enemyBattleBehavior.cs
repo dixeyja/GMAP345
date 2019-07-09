@@ -52,4 +52,9 @@ public class enemyBattleBehavior : MonoBehaviour
             anim.SetBool("isAttacking", false);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Hit On Enemy Detected");
+    }
 }

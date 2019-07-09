@@ -7,7 +7,7 @@ public class enemyDungeonBehavior : MonoBehaviour
     public float speed;
     public Transform playerCharacter;
     static Animator anim;
-    public GameObject battleVersion;
+    public float sightRange = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,7 @@ public class enemyDungeonBehavior : MonoBehaviour
     {
         Vector3 direction = playerCharacter.position - this.transform.position;
         float angle = Vector3.Angle(direction, this.transform.forward);
-        if (Vector3.Distance(playerCharacter.position, this.transform.position) < 10 && angle < 45 )
+        if (Vector3.Distance(playerCharacter.position, this.transform.position) < sightRange && angle < 45 )
         {
             direction.y = 0;
 
@@ -35,14 +35,6 @@ public class enemyDungeonBehavior : MonoBehaviour
             anim.SetBool("isIdle", true);
             anim.SetBool("isWalking", false);
             anim.SetBool("isAttacking", false);
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.tag == "Player")
-        {
-            battleVersion.SetActive(true);
         }
     }
 }

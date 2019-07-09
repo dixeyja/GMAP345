@@ -12,10 +12,23 @@ public class characterController : MonoBehaviour
 
     private Vector3 moveDirection;
 
-    public bool canWalk;
+    private bool canWalk;
+
+    #region Weapon variables
+
+    public GameObject sword;
+    private Animator swordAnim;
+    public Collider bladeCollider;
+    #endregion
+
+    #region TEMP
+    public combatManager cManager;
+    #endregion
 
     void Start()
     {
+        swordAnim = sword.GetComponent<Animator>();
+        bladeCollider.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
         canWalk = true;
         rb.useGravity = true;
@@ -30,6 +43,18 @@ public class characterController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
+
+        if (Input.GetButton("Fire1"))
+        {
+            bladeCollider.enabled = true;
+            swordAnim.SetBool("isAttacking", true);
+            swordAnim.SetBool("isIdle", false);
+        }
+        else
+        {
+            swordAnim.SetBool("isAttacking", false);
+            swordAnim.SetBool("isIdle", true);
+        }
     }
 
     private void FixedUpdate()
@@ -40,6 +65,15 @@ public class characterController : MonoBehaviour
             float strafe = Input.GetAxis("Horizontal");
 
             moveDirection = new Vector3(strafe, 0, translate);
+
+            if (moveDirection != new Vector3(0, 0, 0))
+            {
+                swordAnim.SetFloat("IdleToRun", 1.5f);
+            }
+            else
+            {
+                swordAnim.SetFloat("IdleToRun", 1.0f);
+            }
 
             transform.Translate(moveDirection.normalized * speed * Time.fixedDeltaTime);
         }
@@ -55,14 +89,13 @@ public class characterController : MonoBehaviour
     {
         if (collision.transform.tag == "Enemy")
         {
-            Vector3 newposition;
-            newposition.x = arenaPosition.position.x;
-            newposition.y = arenaPosition.position.y + 20;
-            newposition.z = arenaPosition.position.z;
-            gameObject.transform.position = newposition;
-
-
+            cManager.EnterCombat();
         }
     }
 
+
+    public void SetCanWalk(bool b)
+    {
+        canWalk = b;
+    }
 }
