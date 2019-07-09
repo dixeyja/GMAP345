@@ -5,7 +5,7 @@ using UnityEngine;
 public class characterController : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 1000.0f;
+    private float speed = 50.0f;
 
     [SerializeField]
     private Transform arenaPosition;
@@ -47,7 +47,13 @@ public class characterController : MonoBehaviour
     {
         if (collision.transform.tag == "Enemy")
         {
-            gameObject.transform.position = arenaPosition.position;
+            Vector3 newposition;
+            newposition.x = arenaPosition.position.x;
+            newposition.y = arenaPosition.position.y + 20;
+            newposition.z = arenaPosition.position.z;
+            gameObject.transform.position = newposition;
+
+
         }
     }
 
