@@ -6,7 +6,7 @@ public class characterController : MonoBehaviour
 {
     [SerializeField]
     private float speed = 50.0f;
-
+    public Rigidbody rb;
     [SerializeField]
     private Transform arenaPosition;
 
@@ -18,6 +18,8 @@ public class characterController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         canWalk = true;
+        rb.useGravity = true;
+        rb.AddForce(0, -10, 0);
     }
 
     // Update is called once per frame
@@ -40,6 +42,12 @@ public class characterController : MonoBehaviour
             moveDirection = new Vector3(strafe, 0, translate);
 
             transform.Translate(moveDirection.normalized * speed * Time.fixedDeltaTime);
+        }
+
+        if (Input.GetKey(KeyCode.Space)) {
+            if (rb.position.y <= 0) {
+                rb.AddForce(0, 50, 0);
+            }
         }
     }
 
