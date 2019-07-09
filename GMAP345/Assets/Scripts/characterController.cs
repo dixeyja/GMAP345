@@ -12,9 +12,12 @@ public class characterController : MonoBehaviour
 
     private Vector3 moveDirection;
 
+    public bool canWalk;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        canWalk = true;
     }
 
     // Update is called once per frame
@@ -29,12 +32,15 @@ public class characterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float translate = Input.GetAxis("Vertical");
-        float strafe = Input.GetAxis("Horizontal");
+        if (canWalk)
+        {
+            float translate = Input.GetAxis("Vertical");
+            float strafe = Input.GetAxis("Horizontal");
 
-        moveDirection = new Vector3(strafe, 0, translate);
+            moveDirection = new Vector3(strafe, 0, translate);
 
-        transform.Translate(moveDirection.normalized * speed * Time.fixedDeltaTime);
+            transform.Translate(moveDirection.normalized * speed * Time.fixedDeltaTime);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
