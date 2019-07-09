@@ -5,7 +5,7 @@ using UnityEngine;
 public class characterController : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 10.0f;
+    private float speed = 1000.0f;
 
     [SerializeField]
     private Transform arenaPosition;
