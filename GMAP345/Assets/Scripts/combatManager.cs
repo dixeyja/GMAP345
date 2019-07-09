@@ -28,7 +28,7 @@ public class combatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("Combat Manager's number of Encounters: " + encounterNumber.ToString());
     }
     
     public void EnterCombat()

@@ -12,7 +12,7 @@ public class enemyBattleBehavior : MonoBehaviour
     public Slider healthbar;
     public combatManager cM;
 
-    private bool justDied = true;
+    private bool alive = true;
 
 
     // Start is called before the first frame update
@@ -26,7 +26,7 @@ public class enemyBattleBehavior : MonoBehaviour
     void Update()
     {
         
-        if(Vector3.Distance(playerCharacter.position, this.transform.position) < 10)
+        if(Vector3.Distance(playerCharacter.position, this.transform.position) < 10 && alive)
         {
             Vector3 direction = playerCharacter.position - this.transform.position;
             direction.y = 0;
@@ -70,13 +70,16 @@ public class enemyBattleBehavior : MonoBehaviour
             anim.SetBool("isAttacking", false);
             anim.SetBool("isHit", false);
             speed = 0;
-            if (justDied)
+            if (alive)
             {
                 cM.EndCombat();
-                justDied = false;
+                alive = false;
             }
 
         }
+
+        Debug.Log("Enemy Battler Speed:" + speed.ToString());
+        Debug.Log("Enemy Battler Health:" + healthbar.value.ToString());
     }
 
     private void OnTriggerEnter(Collider other)

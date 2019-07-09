@@ -48,7 +48,8 @@ public class CharController : MonoBehaviour
 
         if (Input.GetKeyDown("escape"))
         {
-            Cursor.lockState = CursorLockMode.None;
+            //Cursor.lockState = CursorLockMode.None;
+            Application.Quit();
         }
 
         if (Input.GetButton("Fire1"))
@@ -59,6 +60,7 @@ public class CharController : MonoBehaviour
         }
         else
         {
+            bladeCollider.enabled = false;
             swordAnim.SetBool("isAttacking", false);
             swordAnim.SetBool("isIdle", true);
         }
@@ -67,6 +69,10 @@ public class CharController : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+
+        Debug.Log("Player's Speed: " + speed.ToString());
+        Debug.Log("Player's Health: " + healthbar.value.ToString());
+        Debug.Log("Player's Damage: " + damage.ToString());
     }
 
     private void FixedUpdate()
