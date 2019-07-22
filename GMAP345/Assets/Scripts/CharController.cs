@@ -11,14 +11,16 @@ public class CharController : MonoBehaviour
     private float speed;
     private float hp;
     public int damage;
-
+    private float san;
+    private float max_san;
     private Rigidbody rb;
-    
+
     private Vector3 moveDirection;
 
     private bool canWalk;
 
     public Slider healthbar;
+    public Slider sanBar;
     
     public TextMeshProUGUI damageTextGUI;
 
@@ -43,6 +45,8 @@ public class CharController : MonoBehaviour
         canWalk = true;
         rb = GetComponent<Rigidbody>();
         healthbar.value = hp;
+        sanBar.value = san;
+        sanBar.maxValue = max_san;
     }
 
     // Update is called once per frame
@@ -73,6 +77,8 @@ public class CharController : MonoBehaviour
         if (healthbar.value <= 0)
         {
             SceneManager.LoadScene(0);
+            max_san = max_san - 30;
+            sanBar.maxValue = max_san;
         }
 
         Debug.Log("Player's Speed: " + speed.ToString());
@@ -114,6 +120,8 @@ public class CharController : MonoBehaviour
         {
             cManager.EnterCombat();
             collision.gameObject.SetActive(false);
+            sanBar.gameObject.SetActive(false);
+            ps.sanLoss(10);
         }
     }
 
@@ -133,9 +141,11 @@ public class CharController : MonoBehaviour
         }
         else if (other.tag == "Pickup")
         {
-            ps.damageUp(10);
-            getData();
-            damageTextGUI.text = damage.ToString();
+            if (true) {
+                ps.damageUp(10);
+                getData();
+                damageTextGUI.text = damage.ToString();
+            } 
         }
     }
 
@@ -144,5 +154,7 @@ public class CharController : MonoBehaviour
         speed = ps.getSpeed();
         damage = ps.getDamage();
         hp = ps.getHp();
+        san = ps.getSan();
+        max_san = ps.getMaxSan();
     }
 }

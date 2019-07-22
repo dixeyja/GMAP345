@@ -8,8 +8,8 @@ public class PlayerStatus : MonoBehaviour
     private float speed = 10.0f;
     private int damage = 10;
     private float hp = 100;
-    private double san = 100;
-    private double max_san = 100;
+    private float san = 100;
+    private float max_san = 100;
 
 
     void Start()
@@ -52,16 +52,20 @@ public class PlayerStatus : MonoBehaviour
         hp -= h;
     }
 
-    public double getSan()
+    public float getSan()
     {
         return san;
     }
 
-    public void sanLoss(double s) {
+    public float getMaxSan() {
+        return max_san;
+    }
+
+    public void sanLoss(float s) {
         san -= s;
     }
 
-    public void max_sanLoss(double s) {
+    public void max_sanLoss(float s) {
         max_san -= s;
     }
 }

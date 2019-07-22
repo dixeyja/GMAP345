@@ -45,6 +45,7 @@ public class combatManager : MonoBehaviour
     public void EndCombat()
     {
         StartCoroutine("FinishUpCombat");
+        
     }
 
     IEnumerator FinishUpCombat()
@@ -52,6 +53,8 @@ public class combatManager : MonoBehaviour
         yield return new WaitForSeconds(3);
         player.transform.position = currentDungeonPosition;
         player.transform.rotation = currentDungeonRotation;
+        player.sanBar.gameObject.SetActive(true);
+        player.sanBar.value = player.ps.getSan();
         enemies[encounterNumber].SetActive(false);
         playerWeapon.SetActive(false);
         encounterNumber++;
