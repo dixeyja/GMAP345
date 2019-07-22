@@ -8,16 +8,18 @@ using TMPro;
 public class CharController : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 10.0f;
+    private float speed;
+    private float hp;
+    public int damage;
 
     private Rigidbody rb;
-
+    
     private Vector3 moveDirection;
 
     private bool canWalk;
 
     public Slider healthbar;
-    public int damage = 10;
+    
     public TextMeshProUGUI damageTextGUI;
 
     #region Weapon variables
@@ -29,23 +31,26 @@ public class CharController : MonoBehaviour
 
     #region TEMP
     public combatManager cManager;
+    public PlayerStatus ps;
     #endregion
 
     void Start()
     {
+        getData();
         swordAnim = sword.GetComponent<Animator>();
         bladeCollider.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
         canWalk = true;
         rb = GetComponent<Rigidbody>();
-        healthbar.value = healthbar.maxValue;
+        healthbar.value = hp;
     }
 
     // Update is called once per frame
     void Update()
     {
+        getData();
         damageTextGUI.text = damage.ToString();
-
+        healthbar.value = hp;
         if (Input.GetKeyDown("escape"))
         {
             //Cursor.lockState = CursorLockMode.None;
@@ -122,11 +127,18 @@ public class CharController : MonoBehaviour
     {
         if (other.tag == "EnemyWeapon")
         {
-            healthbar.value -= 10;
+            ps.HpLoss(10);
         }
         else if (other.tag == "Pickup")
         {
-            damage += 10;
+            ps.damageUp(10);
         }
+    }
+
+
+    public void getData() {
+        speed = ps.getSpeed();
+        damage = ps.getDamage();
+        hp = ps.getHp();
     }
 }
