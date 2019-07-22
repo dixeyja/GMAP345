@@ -128,10 +128,14 @@ public class CharController : MonoBehaviour
         if (other.tag == "EnemyWeapon")
         {
             ps.HpLoss(10);
+            getData();
+            healthbar.value = hp;
         }
         else if (other.tag == "Pickup")
         {
             ps.damageUp(10);
+            getData();
+            damageTextGUI.text = damage.ToString();
         }
     }
 
