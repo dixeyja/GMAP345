@@ -39,14 +39,18 @@ public class CharController : MonoBehaviour
     void Start()
     {
         getData();
+
+
         swordAnim = sword.GetComponent<Animator>();
         bladeCollider.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
         canWalk = true;
         rb = GetComponent<Rigidbody>();
+
         healthbar.value = hp;
         sanBar.value = san;
-        sanBar.maxValue = max_san;
+        sanBar.maxValue = 100;
+        
     }
 
     // Update is called once per frame
@@ -54,7 +58,7 @@ public class CharController : MonoBehaviour
     {
         getData();
         damageTextGUI.text = damage.ToString();
-        healthbar.value = hp;
+
         if (Input.GetKeyDown("escape"))
         {
             //Cursor.lockState = CursorLockMode.None;
@@ -74,20 +78,30 @@ public class CharController : MonoBehaviour
             swordAnim.SetBool("isIdle", true);
         }
 
-        if (healthbar.value <= 0)
+        if (hp <= 0)
         {
+            ps.sanLoss(100);
+            ps.max_sanLoss(30);
             SceneManager.LoadScene(0);
-            max_san = max_san - 30;
-            sanBar.maxValue = max_san;
+        }
+        if (san <= 0)
+        {
+            Debug.Log("game over");
+            Application.Quit();
         }
 
-        Debug.Log("Player's Speed: " + speed.ToString());
-        Debug.Log("Player's Health: " + healthbar.value.ToString());
-        Debug.Log("Player's Damage: " + damage.ToString());
+        Debug.Log("San " + ' ' + san.ToString());
+        Debug.Log("Max San " + max_san);
+
+        //Debug.Log("Player's Speed: " + speed.ToString());
+        //Debug.Log("Player's Health: " + healthbar.value.ToString());
+        //Debug.Log("Player's Damage: " + damage.ToString());
     }
 
     private void FixedUpdate()
     {
+        
+        
         if (canWalk)
         {
             float translate = Input.GetAxis("Vertical");
@@ -135,7 +149,7 @@ public class CharController : MonoBehaviour
     {
         if (other.tag == "EnemyWeapon")
         {
-            ps.HpLoss(10);
+            ps.HpLoss(60);
             getData();
             healthbar.value = hp;
         }
@@ -143,8 +157,10 @@ public class CharController : MonoBehaviour
         {
             if (true) {
                 ps.damageUp(10);
+                ps.sanGain(20);
                 getData();
                 damageTextGUI.text = damage.ToString();
+                sanBar.value = san;
             } 
         }
     }

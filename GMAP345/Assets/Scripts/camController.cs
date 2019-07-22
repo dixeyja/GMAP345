@@ -35,9 +35,9 @@ public class camController : MonoBehaviour
         transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
         playerCharacter.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, playerCharacter.transform.up);
 
-        Debug.Log("Camera's change in Mouse Position: " +  mouseDelta.ToString());
-        Debug.Log("Camera's Smoothing value: " +smoothV.ToString());
-        Debug.Log("Camera's total change in mouse movement: " + mouseLook.ToString());
+        //Debug.Log("Camera's change in Mouse Position: " +  mouseDelta.ToString());
+        //Debug.Log("Camera's Smoothing value: " +smoothV.ToString());
+        //Debug.Log("Camera's total change in mouse movement: " + mouseLook.ToString());
 
 
     }

@@ -8,13 +8,14 @@ public class PlayerStatus : MonoBehaviour
     private float speed = 10.0f;
     private int damage = 10;
     private float hp = 100;
-    private float san = 100;
-    private float max_san = 100;
+    private static float san = 100;
+    private static float max_san = 100;
+    
 
 
     void Start()
     {
-       
+        
     }
 
     // Update is called once per frame
@@ -67,5 +68,13 @@ public class PlayerStatus : MonoBehaviour
 
     public void max_sanLoss(float s) {
         max_san -= s;
+    }
+
+    public void sanGain(float s) {
+        san += s;
+        if (san >= max_san)
+        {
+            san = max_san;
+        }
     }
 }
