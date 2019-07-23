@@ -17,7 +17,7 @@ public class Pickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
@@ -28,11 +28,6 @@ public class Pickup : MonoBehaviour
         {
 
             gameObject.SetActive(false);
-            
         }
-    }
-
-    public bool getUsed() {
-        return used;
     }
 }

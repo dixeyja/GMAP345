@@ -90,8 +90,6 @@ public class CharController : MonoBehaviour
             Application.Quit();
         }
 
-        Debug.Log("San " + ' ' + san.ToString());
-        Debug.Log("Max San " + max_san);
 
         //Debug.Log("Player's Speed: " + speed.ToString());
         //Debug.Log("Player's Health: " + healthbar.value.ToString());
@@ -155,7 +153,9 @@ public class CharController : MonoBehaviour
         }
         else if (other.tag == "Pickup")
         {
-            if (true) {
+            Debug.Log(other.isTrigger.ToString());
+            if (other.isTrigger) {
+                other.isTrigger = false;                    
                 ps.damageUp(10);
                 ps.sanGain(20);
                 getData();
