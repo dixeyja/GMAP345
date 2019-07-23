@@ -8,12 +8,6 @@ using UnityEngine.Events;
 
 public class CharController : MonoBehaviour
 {
-    [SerializeField]
-    private float speed;
-    private float hp;
-    public int damage;
-    private float san;
-    private float max_san;
     private Rigidbody rb;
 
     private Vector3 moveDirection;
@@ -24,33 +18,36 @@ public class CharController : MonoBehaviour
     public Slider sanBar;
     
     public TextMeshProUGUI damageTextGUI;
-
+    public TextMeshProUGUI lightTextGUI;
     public UnityAction<HitData> hitEvent;
 
-    #region Weapon variables
+    #region Item Variables
 
     public GameObject sword;
     private Animator swordAnim;
     public Collider bladeCollider;
+
+    public GameObject torch;
+    private Animator torchAnim;
     #endregion
 
     #region TEMP
     public combatManager cManager;
-    public PlayerStatus ps;
+    [HideInInspector]
+    public  PlayerStatus ps;
     #endregion
 
     void Start()
     {
-        getData();
-
-
+        ps = this.GetComponent<PlayerStatus>();
         swordAnim = sword.GetComponent<Animator>();
+        torchAnim = torch.GetComponent<Animator>();
         bladeCollider.enabled = false;
         canWalk = true;
         rb = GetComponent<Rigidbody>();
 
-        healthbar.value = hp;
-        sanBar.value = san;
+        healthbar.value = ps.getHp();
+        sanBar.value = ps.getSan();
         sanBar.maxValue = 100;
         
     }
@@ -58,12 +55,14 @@ public class CharController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        getData();
-        damageTextGUI.text = damage.ToString();
+        damageTextGUI.text = ps.getDamage().ToString();
+        lightTextGUI.text = ps.GetLightLevel().ToString();
+        healthbar.value = ps.getHp();
+        sanBar.value = ps.getSan();
+
 
         if (Input.GetKeyDown("escape"))
         {
-            //Cursor.lockState = CursorLockMode.None;
             Application.Quit();
         }
 
@@ -80,13 +79,35 @@ public class CharController : MonoBehaviour
             swordAnim.SetBool("isIdle", true);
         }
 
-        if (hp <= 0)
+        if (Input.GetButtonDown("Equip Torch"))
         {
-            ps.sanLoss(100);
-            ps.max_sanLoss(30);
-            SceneManager.LoadScene(0);
+            if (torchAnim.GetBool("isOut"))
+            {
+                torchAnim.SetBool("isOut", false);
+            }
+            else
+            {
+                torchAnim.SetBool("isOut", true);
+            }
         }
-        if (san <= 0)
+
+        if (torchAnim.GetBool("isOut"))
+        {
+            ps.ConfigureLightLevel(30);
+        }
+        else
+        {
+                //ps.SetLightLevel(0);
+        }
+
+        if (ps.getHp() <= 0)
+        {
+            ps.sanLoss(40);
+            ps.max_sanLoss(30);
+            cManager.EndCombat();
+            ps.hpGain(30);
+        }
+        if (ps.getSan() <= 0)
         {
             Debug.Log("game over");
             Application.Quit();
@@ -118,7 +139,7 @@ public class CharController : MonoBehaviour
                 swordAnim.SetFloat("IdleToRun", 1.0f);
             }
 
-            transform.Translate(moveDirection.normalized * speed * Time.fixedDeltaTime);
+            transform.Translate(moveDirection.normalized * ps.getSpeed() * Time.fixedDeltaTime);
         }
 
         if (Input.GetKey(KeyCode.Space)) {
@@ -128,14 +149,20 @@ public class CharController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
-        if (collision.transform.tag == "Enemy")
+        if (other.transform.tag == "Enemy")
         {
             cManager.EnterCombat();
-            collision.gameObject.SetActive(false);
+            other.gameObject.SetActive(false);
             sanBar.gameObject.SetActive(false);
             ps.sanLoss(10);
+        }
+
+        if (other.transform.tag == "EnemyWeapon")
+        {
+            ps.HpLoss(20);
+            
         }
     }
 
@@ -149,9 +176,8 @@ public class CharController : MonoBehaviour
     {
         if (other.tag == "EnemyWeapon")
         {
-            ps.HpLoss(60);
-            getData();
-            healthbar.value = hp;
+            ps.HpLoss(10);
+            healthbar.value = ps.getHp();
         }
         else if (other.tag == "Pickup")
         {
@@ -160,19 +186,24 @@ public class CharController : MonoBehaviour
                 other.isTrigger = false;                    
                 ps.damageUp(10);
                 ps.sanGain(20);
-                getData();
-                damageTextGUI.text = damage.ToString();
-                sanBar.value = san;
+                ps.hpGain(30);
+
+                damageTextGUI.text = ps.getDamage().ToString();
+                sanBar.value = ps.getSan();
             } 
+        }
+        else if (other.tag == "LitArea")
+        {
+            ps.ConfigureLightLevel(other.transform.GetComponent<LitArea>().GetLightValue());
         }
     }
 
-
-    public void getData() {
-        speed = ps.getSpeed();
-        damage = ps.getDamage();
-        hp = ps.getHp();
-        san = ps.getSan();
-        max_san = ps.getMaxSan();
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "LitArea")
+        {
+            ps.SetLightLevel(0);
+        }
     }
+
 }

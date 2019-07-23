@@ -10,6 +10,7 @@ public class combatManager : MonoBehaviour
     public List<GameObject> enemies;
     public Transform playerArenaPostion;
     public Transform enemyArenaPosition;
+    public Light spotlight;
 
     private Vector3 currentDungeonPosition;
     private Quaternion currentDungeonRotation;
@@ -34,6 +35,7 @@ public class combatManager : MonoBehaviour
     public void EnterCombat()
     {
         //StartCoroutine("Transition");
+        spotlight.spotAngle = player.ps.GetLightLevel();
         currentDungeonPosition = player.transform.position;
         currentDungeonRotation = player.transform.rotation;
         player.transform.position = playerArenaPostion.position;
@@ -50,7 +52,8 @@ public class combatManager : MonoBehaviour
 
     IEnumerator FinishUpCombat()
     {
-        yield return new WaitForSeconds(3);
+        //yield return new WaitForSeconds(3);
+        yield return null;
         player.transform.position = currentDungeonPosition;
         player.transform.rotation = currentDungeonRotation;
         player.sanBar.gameObject.SetActive(true);

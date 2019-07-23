@@ -1,77 +1,22 @@
 fileFormatVersion: 2
-guid: 87a140bd10239994c8b59e4b5ee43f0b
+guid: 7ee0f2160e20493449b1f60952593155
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Body
-    100002: Eye
-    100004: Eye1
-    100006: Eye2
-    100008: Eye3
-    100010: Eye4
-    100012: Eye5
-    100014: Eye6
-    100016: Eye7
-    100018: //RootNode
-    100020: FireElemental
-    100022: L_Arm
-    100024: left
-    100026: R_arm
-    400000: Body
-    400002: Eye
-    400004: Eye1
-    400006: Eye2
-    400008: Eye3
-    400010: Eye4
-    400012: Eye5
-    400014: Eye6
-    400016: Eye7
-    400018: //RootNode
-    400020: FireElemental
-    400022: L_Arm
-    400024: left
-    400026: R_arm
-    2000000: left
-    2100000: White
-    2100002: orange
-    2100004: Black
-    2100006: lambert5
-    2100008: lambert4
-    2300000: Body
-    2300002: Eye
-    2300004: Eye1
-    2300006: Eye2
-    2300008: Eye3
-    2300010: Eye4
-    2300012: Eye5
-    2300014: Eye6
-    2300016: Eye7
-    2300018: L_Arm
-    2300020: R_arm
-    3300000: Body
-    3300002: Eye
-    3300004: Eye1
-    3300006: Eye2
-    3300008: Eye3
-    3300010: Eye4
-    3300012: Eye5
-    3300014: Eye6
-    3300016: Eye7
-    3300018: L_Arm
-    3300020: R_arm
-    4300000: Eye
-    4300002: Body
-    4300004: L_Arm
-    4300006: R_arm
-    4300008: Eye1
-    4300010: Eye2
-    4300012: Eye3
-    4300014: Eye4
-    4300016: Eye5
-    4300018: Eye6
-    4300020: Eye7
-    7400000: Take 001
-    9500000: //RootNode
+    100000: Earth_Elemental_Body
+    100002: //RootNode
+    100004: pCube1_Earth_Elemental
+    400000: Earth_Elemental_Body
+    400002: //RootNode
+    400004: pCube1_Earth_Elemental
+    2100000: Earth_Elemental_BodyMat
+    2100002: pCube1_Earth_ElementalMat
+    2300000: Earth_Elemental_Body
+    2300002: pCube1_Earth_Elemental
+    3300000: Earth_Elemental_Body
+    3300002: pCube1_Earth_Elemental
+    4300000: Earth_Elemental_Body
+    4300002: pCube1_Earth_Elemental
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -124,8 +69,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -152,7 +97,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

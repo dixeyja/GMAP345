@@ -8,8 +8,8 @@ public class enemyBattleBehavior : MonoBehaviour
 
     public float speed;
     public Transform playerCharacter;
-    static Animator anim;
-    public Slider healthbar;
+    //static Animator anim;
+    public int health;
     public combatManager cM;
 
     private bool alive = true;
@@ -18,8 +18,7 @@ public class enemyBattleBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
-        healthbar.value = healthbar.maxValue;
+        //anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,43 +31,46 @@ public class enemyBattleBehavior : MonoBehaviour
             direction.y = 0;
 
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), 0.1f);
-            
-            if (direction.magnitude > 2)
-            {
-                anim.SetBool("isWalking", true);
-                anim.SetBool("isIdle", false);
-                anim.SetBool("isAttacking", false);
-                anim.SetBool("isHit", false);
-                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-                {
-                    transform.Translate(0, 0, speed * Time.deltaTime);
-                }
-            }
-            else
-            {
-                anim.SetBool("isAttacking", true);
-                anim.SetBool("isWalking", false);
-                anim.SetBool("isIdle", false);
-                anim.SetBool("isHit", false);
-            }
+
+            transform.Translate(0, 0, speed * Time.deltaTime);
+
+            //if (direction.magnitude > 2)
+           // {
+                //anim.SetBool("isWalking", true);
+                //anim.SetBool("isIdle", false);
+                //anim.SetBool("isAttacking", false);
+                //anim.SetBool("isHit", false);
+                //if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+                //{
+                //    transform.Translate(0, 0, speed * Time.deltaTime);
+                //}
+                
+           // }
+            //else
+           // {
+               // anim.SetBool("isAttacking", true);
+               // anim.SetBool("isWalking", false);
+               // anim.SetBool("isIdle", false);
+                //anim.SetBool("isHit", false);
+            //}
 
 
         }
         else
         {
-            anim.SetBool("isIdle", true);
-            anim.SetBool("isWalking", false);
-            anim.SetBool("isAttacking", false);
-            anim.SetBool("isHit", false);
+            //anim.SetBool("isIdle", true);
+            //anim.SetBool("isWalking", false);
+            //anim.SetBool("isAttacking", false);
+            //anim.SetBool("isHit", false);
         }
 
-        if (healthbar.value <= 0)
+        if (health <= 0)
         {
-            anim.SetBool("isDead", true);
-            anim.SetBool("isIdle", false);
-            anim.SetBool("isWalking", false);
-            anim.SetBool("isAttacking", false);
-            anim.SetBool("isHit", false);
+           // anim.SetBool("isDead", true);
+            //anim.SetBool("isIdle", false);
+            //anim.SetBool("isWalking", false);
+           // anim.SetBool("isAttacking", false);
+            //anim.SetBool("isHit", false);
             speed = 0;
             if (alive)
             {
@@ -79,7 +81,7 @@ public class enemyBattleBehavior : MonoBehaviour
         }
 
         Debug.Log("Enemy Battler Speed:" + speed.ToString());
-        Debug.Log("Enemy Battler Health:" + healthbar.value.ToString());
+        Debug.Log("Enemy Battler Health:" + health.ToString());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -87,11 +89,11 @@ public class enemyBattleBehavior : MonoBehaviour
         Debug.Log("Hit On Enemy Detected");
         if (other.tag == "PlayerWeapon")
         {
-            healthbar.value -= other.GetComponentInParent<CharController>().damage;
-            anim.SetBool("isHit", true);
-            anim.SetBool("isIdle", false);
-            anim.SetBool("isWalking", false);
-            anim.SetBool("isAttacking", false);
+            health -= other.GetComponentInParent<CharController>().ps.getDamage();
+            //anim.SetBool("isHit", true);
+            //anim.SetBool("isIdle", false);
+            //anim.SetBool("isWalking", false);
+            //anim.SetBool("isAttacking", false);
             
         }
 

@@ -8,8 +8,10 @@ public class PlayerStatus : MonoBehaviour
     private float speed = 10.0f;
     private int damage = 10;
     private float hp = 100;
-    private static float san = 100;
-    private static float max_san = 100;
+    private float maxHp = 100;
+    private float san = 100;
+    private float max_san = 100;
+    private int lightLevel = 0; 
     
 
 
@@ -76,5 +78,33 @@ public class PlayerStatus : MonoBehaviour
         {
             san = max_san;
         }
+    }
+    
+    public void hpGain(float f)
+    {
+        hp += f;
+        if (hp >= maxHp)
+        {
+            hp = maxHp;
+        }
+    }
+
+    public int GetLightLevel()
+    {
+        return lightLevel;
+    }
+
+    public void ConfigureLightLevel(int i)
+    {
+        if (lightLevel < i)
+        {
+            lightLevel = i;
+        }
+    }
+
+    public void SetLightLevel(int i)
+    {
+        lightLevel = i;
+ 
     }
 }
