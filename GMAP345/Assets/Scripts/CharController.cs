@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Events;
 
 public class CharController : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class CharController : MonoBehaviour
     
     public TextMeshProUGUI damageTextGUI;
 
+    public UnityAction<HitData> hitEvent;
+
     #region Weapon variables
 
     public GameObject sword;
@@ -43,7 +46,6 @@ public class CharController : MonoBehaviour
 
         swordAnim = sword.GetComponent<Animator>();
         bladeCollider.enabled = false;
-        Cursor.lockState = CursorLockMode.Locked;
         canWalk = true;
         rb = GetComponent<Rigidbody>();
 
@@ -65,7 +67,7 @@ public class CharController : MonoBehaviour
             Application.Quit();
         }
 
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             bladeCollider.enabled = true;
             swordAnim.SetBool("isAttacking", true);

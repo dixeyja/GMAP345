@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    // Start is called before the first frame update
     private Collider mCollider;
     private bool used;
 
