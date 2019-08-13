@@ -20,11 +20,8 @@ public class combatManager : MonoBehaviour
 
     private int encounterNumber = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameEvent combatStart;
+    public GameEvent combatEnd;
 
     // Update is called once per frame
     void Update()
@@ -42,12 +39,15 @@ public class combatManager : MonoBehaviour
         enemies[encounterNumber].SetActive(true);
         enemies[encounterNumber].transform.position = enemyArenaPosition.position;
         playerWeapon.SetActive(true);
+        player.inCombat = true;
+        combatStart.Raise();
     }
 
     public void EndCombat()
     {
         StartCoroutine("FinishUpCombat");
-        
+        player.inCombat = false;
+        combatEnd.Raise();
     }
 
     IEnumerator FinishUpCombat()
@@ -60,6 +60,7 @@ public class combatManager : MonoBehaviour
         player.sanBar.value = player.ps.getSan();
         enemies[encounterNumber].SetActive(false);
         playerWeapon.SetActive(false);
+        
         encounterNumber++;
     }
 }

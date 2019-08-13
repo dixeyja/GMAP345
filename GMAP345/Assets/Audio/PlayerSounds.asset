@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970833b5f19e85d4cbb25e46dec4b8cf, type: 3}
+  m_Name: PlayerSounds
+  m_EditorClassIdentifier: 
+  sounds:
+  - clipName: SwordUnsheath
+    clip: {fileID: 8300000, guid: febf822fafe508342af2dedbcf1792b3, type: 3}
+    volume: 0.033
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    isOneShot: 1
+    src: {fileID: 0}
+  - clipName: Step1
+    clip: {fileID: 8300000, guid: 17c9f388360d1f1459ce1be88774327d, type: 3}
+    volume: 0.128
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    isOneShot: 1
+    src: {fileID: 0}
+  - clipName: Step2
+    clip: {fileID: 8300000, guid: 7465d857b9332d547b536b7339efed36, type: 3}
+    volume: 0.115
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    isOneShot: 1
+    src: {fileID: 0}
+  - clipName: TorchEquip
+    clip: {fileID: 8300000, guid: 4e8e1858f92697645899e792a75b525a, type: 3}
+    volume: 0.241
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    isOneShot: 1
+    src: {fileID: 0}

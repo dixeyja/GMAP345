@@ -16,6 +16,8 @@ public class Sound
 
     public bool loop;
 
+    public bool isOneShot;
+
     [HideInInspector]
     public AudioSource src;
 }

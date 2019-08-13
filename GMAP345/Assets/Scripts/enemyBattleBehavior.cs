@@ -13,6 +13,7 @@ public class enemyBattleBehavior : MonoBehaviour
     public combatManager cM;
 
     private bool alive = true;
+    private bool spotted = false;
 
 
     // Start is called before the first frame update

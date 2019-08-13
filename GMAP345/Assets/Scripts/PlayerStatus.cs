@@ -2,32 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatus : MonoBehaviour
+[CreateAssetMenu]
+public class PlayerStatus : ScriptableObject
 {
     // Start is called before the first frame update
-    private float speed = 10.0f;
-    private int damage = 10;
-    private float hp = 100;
-    private float maxHp = 100;
-    private float san = 100;
-    private float max_san = 100;
-    private int lightLevel = 0; 
-    
+    private float speed;
+    public float baseSpeed;
+    private int damage;
+    public int baseDamage;
+    private float hp;
+    public float maxHp;
+    private float san;
+    private float max_san;
+    public float base_san;
+    private int lightLevel = 0;
 
-
-    void Start()
+    void OnEnable()
     {
-        
+        ResetStatus();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
-
 
     public int getDamage() {
         return damage;
@@ -61,7 +54,7 @@ public class PlayerStatus : MonoBehaviour
     }
 
     public float getMaxSan() {
-        return max_san;
+        return base_san;
     }
 
     public void sanLoss(float s) {
@@ -74,9 +67,9 @@ public class PlayerStatus : MonoBehaviour
 
     public void sanGain(float s) {
         san += s;
-        if (san >= max_san)
+        if (san >= base_san)
         {
-            san = max_san;
+            san = base_san;
         }
     }
     
@@ -106,5 +99,13 @@ public class PlayerStatus : MonoBehaviour
     {
         lightLevel = i;
  
+    }
+
+    public void ResetStatus()
+    {
+        speed = baseSpeed;
+        hp = maxHp;
+        san = base_san;
+        max_san = base_san;
     }
 }

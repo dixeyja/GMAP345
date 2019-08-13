@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970833b5f19e85d4cbb25e46dec4b8cf, type: 3}
+  m_Name: Music
+  m_EditorClassIdentifier: 
+  sounds:
+  - clipName: DungeonAmbience
+    clip: {fileID: 8300000, guid: a85488221085c4347a53d5de393df05b, type: 3}
+    volume: 0.218
+    pitch: 0.52
+    spatialBlend: 0
+    loop: 1
+    isOneShot: 0
+    src: {fileID: 0}
+  - clipName: ArenaMusic
+    clip: {fileID: 8300000, guid: 9c4bbd004a9df284198169434f3a34d0, type: 3}
+    volume: 0.024
+    pitch: 1
+    spatialBlend: 0
+    loop: 1
+    isOneShot: 0
+    src: {fileID: 0}
+  - clipName: SpottedMusic
+    clip: {fileID: 8300000, guid: 6bc05781b4534a849b1379a795a9f8a5, type: 3}
+    volume: 0.074
+    pitch: 0.98
+    spatialBlend: 0
+    loop: 1
+    isOneShot: 0
+    src: {fileID: 0}

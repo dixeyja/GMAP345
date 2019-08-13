@@ -8,17 +8,26 @@ using UnityEngine.Events;
 
 public class CharController : MonoBehaviour
 {
+    public PlayerStatus ps;
     private Rigidbody rb;
     private bool map_open;
     private Vector3 moveDirection;
 
     private bool canWalk;
+    private bool moving;
+    private bool attacking = false;
 
     public Slider healthbar;
     public Slider sanBar;
     public TextMeshProUGUI damageTextGUI;
     public TextMeshProUGUI lightTextGUI;
     public UnityAction<HitData> hitEvent;
+
+    private AudioManager am;
+
+    private string[] footsteps;
+
+    public bool inCombat = false;
 
     #region Item Variables
 
@@ -32,13 +41,11 @@ public class CharController : MonoBehaviour
 
     #region TEMP
     public combatManager cManager;
-    [HideInInspector]
-    public  PlayerStatus ps;
     #endregion
 
     void Start()
     {
-        ps = this.GetComponent<PlayerStatus>();
+        
         swordAnim = sword.GetComponent<Animator>();
         torchAnim = torch.GetComponent<Animator>();
         bladeCollider.enabled = false;
@@ -47,7 +54,13 @@ public class CharController : MonoBehaviour
 
         healthbar.value = ps.getHp();
         sanBar.value = ps.getSan();
-        sanBar.maxValue = 100;
+        sanBar.maxValue = ps.getMaxSan();
+
+        am = gameObject.GetComponent<AudioManager>();
+
+        footsteps = new string[2];
+        footsteps[0] = "Step1";
+        footsteps[1] = "Step2";
 
     }
 
@@ -65,28 +78,39 @@ public class CharController : MonoBehaviour
             Application.Quit();
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (inCombat)
         {
-            bladeCollider.enabled = true;
-            swordAnim.SetBool("isAttacking", true);
-            swordAnim.SetBool("isIdle", false);
+            if (Input.GetButtonDown("Fire1"))
+            {
+                bladeCollider.enabled = true;
+                swordAnim.SetBool("isAttacking", true);
+                swordAnim.SetBool("isIdle", false);
+                if (attacking == false)
+                {
+                    attacking = true;
+                    StartCoroutine("SwordSwing");
+                }
+            }
+            else
+            {
+                bladeCollider.enabled = false;
+                swordAnim.SetBool("isAttacking", false);
+                swordAnim.SetBool("isIdle", true);
+            }
         }
-        else
-        {
-            bladeCollider.enabled = false;
-            swordAnim.SetBool("isAttacking", false);
-            swordAnim.SetBool("isIdle", true);
-        }
+        
 
         if (Input.GetButtonDown("Equip Torch"))
         {
             if (torchAnim.GetBool("isOut"))
             {
                 torchAnim.SetBool("isOut", false);
+                am.PlaySound("TorchEquip");
             }
             else
             {
                 torchAnim.SetBool("isOut", true);
+                am.PlaySound("TorchEquip");
             }
         }
 
@@ -132,10 +156,23 @@ public class CharController : MonoBehaviour
             if (moveDirection != new Vector3(0, 0, 0))
             {
                 swordAnim.SetFloat("IdleToRun", 1.5f);
+                if (moving == false)
+                {
+                    moving = true;
+                    StartCoroutine("Moving");
+
+                }
+                
             }
             else
             {
+                if (moving != false)
+                {
+                    am.PlaySound(footsteps[Random.Range(0, 2)]);
+                }
                 swordAnim.SetFloat("IdleToRun", 1.0f);
+                moving = false;
+                StopCoroutine("Moving");
             }
 
             transform.Translate(moveDirection.normalized * ps.getSpeed() * Time.fixedDeltaTime);
@@ -205,4 +242,24 @@ public class CharController : MonoBehaviour
         }
     }
 
+
+    public IEnumerator SwordSwing()
+    {
+
+        yield return new WaitForSeconds(.25f);
+        am.PlaySound("SwordUnsheath");
+        yield return new WaitForSeconds(.25f);
+        attacking = false;
+    }
+
+
+    private IEnumerator Moving()
+    {
+        while (moving)
+        {
+
+            am.PlaySound(footsteps[Random.Range(0, 2)]);
+            yield return new WaitForSeconds(.5f);
+        }
+    }
 }

@@ -11,13 +11,19 @@ public class enemyDungeonBehavior : MonoBehaviour
     //distance in which the enemy can see the player
     public float sightRange = 20f;
     public float sightAngle = 45f;
-    
-    
+
+    public bool spotted = false;
+
+    private AudioManager am;
+
+    public GameEvent PlayerSpotted;
+    public GameEvent PlayerEscaped;
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();  
+        anim = GetComponent<Animator>();
+        am = GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -35,17 +41,26 @@ public class enemyDungeonBehavior : MonoBehaviour
             anim.SetBool("isWalking", true);
             anim.SetBool("isIdle", false);
             transform.Translate(0, 0, speed * Time.deltaTime);
+            if (!spotted)
+            {
+                PlayerSpotted.Raise();
+                am.PlaySound("AgroNoise");
+                spotted = true;
+            }
         }
         else
         {
+            if (spotted)
+            {
+                PlayerEscaped.Raise();
+            }
+            spotted = false;
             anim.SetBool("isIdle", true);
             anim.SetBool("isWalking", false);
             anim.SetBool("isAttacking", false);
         }
 
-        Debug.Log("Enemy Dungeoner Speed:" + speed.ToString());
-        Debug.Log("Enemy Dungeoner Sight Range:" + sightRange.ToString());
-        Debug.Log("Enemy Dungeoner Sight Angle:" + sightAngle.ToString());
+
     }
 
 }

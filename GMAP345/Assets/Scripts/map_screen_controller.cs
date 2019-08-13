@@ -5,9 +5,11 @@ using UnityEngine;
 public class map_screen_controller : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Canvas map_canvas;
+    public GameObject map_canvas;
     public Camera map_cam;
     public CharController player;
+
+    public bool mapOpened = false;
     void Start()
     {
 
@@ -23,20 +25,36 @@ public class map_screen_controller : MonoBehaviour
     void Update()
     {
         Debug.Log(Input.inputString);
+
         if (Input.GetButtonDown("MAP OPEN")) {
-            player.SetCanWalk(true);
-            map_canvas.gameObject.SetActive(false);
+            if (!mapOpened)
+            {
+                player.SetCanWalk(false);
+                map_canvas.gameObject.SetActive(true);
+                mapOpened = true;
+            }
+            else
+            {
+                player.SetCanWalk(true);
+                map_canvas.gameObject.SetActive(false);
+                mapOpened = false;
+            }
+
+
         }
     }
 
 
     private void FixedUpdate()
     {
-        player.SetCanWalk(false);
-        float translate = Input.GetAxis("z_axis");
-        float strafe = Input.GetAxis("Horizontal");
-        Vector3 moveDirection = new Vector3(strafe, translate, 0);
-        map_cam.transform.Translate(moveDirection.normalized * player.ps.getSpeed() * Time.fixedDeltaTime);
-        Debug.Log("Location" + map_cam.transform.position);
+        if (mapOpened)
+        {
+            float translate = Input.GetAxis("z_axis");
+            float strafe = Input.GetAxis("Horizontal");
+            Vector3 moveDirection = new Vector3(strafe, translate, 0);
+            map_cam.transform.Translate(moveDirection.normalized * player.ps.getSpeed() * Time.fixedDeltaTime);
+            Debug.Log("Location" + map_cam.transform.position);
+        }
+        
     }
 }
