@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniMapController : MonoBehaviour
+public class MapScreenController : MonoBehaviour
 {
-
-    public MonoBehaviour player;
     // Start is called before the first frame update
     void Start()
     {

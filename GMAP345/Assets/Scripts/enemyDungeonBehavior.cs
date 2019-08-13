@@ -11,7 +11,7 @@ public class enemyDungeonBehavior : MonoBehaviour
     //distance in which the enemy can see the player
     public float sightRange = 20f;
     public float sightAngle = 45f;
-
+    
     
 
     // Start is called before the first frame update

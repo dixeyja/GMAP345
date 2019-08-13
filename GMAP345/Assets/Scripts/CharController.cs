@@ -9,14 +9,13 @@ using UnityEngine.Events;
 public class CharController : MonoBehaviour
 {
     private Rigidbody rb;
-
+    private bool map_open;
     private Vector3 moveDirection;
 
     private bool canWalk;
 
     public Slider healthbar;
     public Slider sanBar;
-    
     public TextMeshProUGUI damageTextGUI;
     public TextMeshProUGUI lightTextGUI;
     public UnityAction<HitData> hitEvent;
@@ -49,7 +48,7 @@ public class CharController : MonoBehaviour
         healthbar.value = ps.getHp();
         sanBar.value = ps.getSan();
         sanBar.maxValue = 100;
-        
+
     }
 
     // Update is called once per frame
