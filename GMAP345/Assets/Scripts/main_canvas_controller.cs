@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +7,15 @@ public class main_canvas_controller : MonoBehaviour
 {
     // Start is called before the first frame update
     public map_screen_controller map_canvas;
-    public Canvas status_canvas;
+    public Status_screen_controller status_canvas;
     private bool map_screen_open;
     private bool status_screen_open;
     void Start()
     {
+        map_screen_open = false;
+        status_screen_open = false;
         map_canvas.gameObject.SetActive(false);
+        status_canvas.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -20,6 +24,14 @@ public class main_canvas_controller : MonoBehaviour
         if (Input.GetButtonDown("MAP OPEN")) {
             if (!map_screen_open)
             {
+                if (status_screen_open)
+                {
+                    status_screen_open = false;
+                    status_canvas.gameObject.SetActive(false);
+                }
+
+
+
                 map_screen_open = true;
                 map_canvas.player.SetCanWalk(false);
 
@@ -36,5 +48,25 @@ public class main_canvas_controller : MonoBehaviour
                 map_screen_open = false;
             }           
         }
+        if (Input.GetKeyDown(KeyCode.P)) {
+            if (!status_screen_open)
+            {
+                if (map_screen_open)
+                {
+                    map_screen_open = false;
+                    map_canvas.gameObject.SetActive(false);
+                }
+
+                status_screen_open = true;
+                status_canvas.gameObject.SetActive(true);
+                status_canvas.player.SetCanWalk(false);
+            }
+            else
+            {
+                status_screen_open = false;
+            }
+        }
     }
+
+    
 }
