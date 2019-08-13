@@ -16,14 +16,8 @@ public class Status_screen_controller : MonoBehaviour
 
 
     void Start()
-    {
-  
-        healthbar.value = player.ps.getHp();
-        healthbar.maxValue = 100;
-        sanBar.value = player.ps.getSan();
-        sanBar.maxValue = 100;
-        maxSanTextGUI.SetText(player.ps.getMaxSan().ToString());
-        damageTextGUI.SetText(player.ps.getDamage().ToString());
+    { 
+        self.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,4 +30,7 @@ public class Status_screen_controller : MonoBehaviour
 
         }
     }
+
+
+  
 }

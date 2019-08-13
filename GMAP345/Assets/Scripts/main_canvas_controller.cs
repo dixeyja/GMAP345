@@ -59,6 +59,12 @@ public class main_canvas_controller : MonoBehaviour
 
                 status_screen_open = true;
                 status_canvas.gameObject.SetActive(true);
+                status_canvas.healthbar.value = status_canvas.player.ps.getHp();
+                status_canvas.healthbar.maxValue = 100;
+                status_canvas.sanBar.value = status_canvas.player.ps.getSan();
+                status_canvas.sanBar.maxValue = 100;
+                status_canvas.maxSanTextGUI.SetText(status_canvas.player.ps.getMaxSan().ToString());
+                status_canvas.damageTextGUI.SetText(status_canvas.player.ps.getDamage().ToString());
                 status_canvas.player.SetCanWalk(false);
             }
             else
