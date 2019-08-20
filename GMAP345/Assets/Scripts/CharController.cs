@@ -17,8 +17,8 @@ public class CharController : MonoBehaviour
     private bool moving;
     private bool attacking = false;
 
-    public Slider healthbar;
-    public Slider sanBar;
+    public Image healthbar;
+    public Image sanBar;
     public TextMeshProUGUI damageTextGUI;
     public TextMeshProUGUI lightTextGUI;
     public UnityAction<HitData> hitEvent;
@@ -52,9 +52,8 @@ public class CharController : MonoBehaviour
         canWalk = true;
         rb = GetComponent<Rigidbody>();
 
-        healthbar.value = ps.getHp();
-        sanBar.value = ps.getSan();
-        sanBar.maxValue = ps.getMaxSan();
+        healthbar.fillAmount = ps.getHp()/ps.getMaxHp();
+        sanBar.fillAmount = ps.getSan()/ps.getMaxSan();
 
         am = gameObject.GetComponent<AudioManager>();
 
@@ -69,8 +68,8 @@ public class CharController : MonoBehaviour
     {
         damageTextGUI.text = ps.getDamage().ToString();
         lightTextGUI.text = ps.GetLightLevel().ToString();
-        healthbar.value = ps.getHp();
-        sanBar.value = ps.getSan();
+        healthbar.fillAmount = ps.getHp() / ps.getMaxHp();
+        sanBar.fillAmount = ps.getSan() / ps.getMaxSan();
 
 
         if (Input.GetKeyDown("escape"))
@@ -213,7 +212,7 @@ public class CharController : MonoBehaviour
         if (other.tag == "EnemyWeapon")
         {
             ps.HpLoss(10);
-            healthbar.value = ps.getHp();
+            healthbar.fillAmount = ps.getHp()/ps.getMaxHp();
         }
         else if (other.tag == "Pickup")
         {
@@ -225,7 +224,7 @@ public class CharController : MonoBehaviour
                 ps.hpGain(30);
 
                 damageTextGUI.text = ps.getDamage().ToString();
-                sanBar.value = ps.getSan();
+                sanBar.fillAmount = ps.getSan()/ps.getMaxSan();
             } 
         }
         else if (other.tag == "LitArea")

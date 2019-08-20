@@ -41831,6 +41831,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 2018694315355560040, guid: 446b39744d0f554408a725410315087e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2018694315355559954, guid: 446b39744d0f554408a725410315087e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -41895,12 +41900,12 @@ PrefabInstance:
         type: 3}
       propertyPath: healthbar
       value: 
-      objectReference: {fileID: 2014230542}
+      objectReference: {fileID: 0}
     - target: {fileID: 2018694315355560047, guid: 446b39744d0f554408a725410315087e,
         type: 3}
       propertyPath: sanBar
       value: 
-      objectReference: {fileID: 1009701005}
+      objectReference: {fileID: 0}
     - target: {fileID: 2018694315355560047, guid: 446b39744d0f554408a725410315087e,
         type: 3}
       propertyPath: damageTextGUI

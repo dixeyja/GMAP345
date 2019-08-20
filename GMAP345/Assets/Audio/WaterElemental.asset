@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 970833b5f19e85d4cbb25e46dec4b8cf, type: 3}
-  m_Name: EarthElemental
+  m_Name: WaterElemental
   m_EditorClassIdentifier: 
   sounds:
-  - clipName: AgroNoise
-    clip: {fileID: 8300000, guid: 504c07ea567f5f1479407c35bacc2119, type: 3}
-    volume: 0.246
-    pitch: 1.26
+  - clipName: Enemy
+    clip: {fileID: 0}
+    volume: 0
+    pitch: 0
     spatialBlend: 0
     loop: 0
     isOneShot: 0

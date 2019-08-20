@@ -57,7 +57,7 @@ public class combatManager : MonoBehaviour
         player.transform.position = currentDungeonPosition;
         player.transform.rotation = currentDungeonRotation;
         player.sanBar.gameObject.SetActive(true);
-        player.sanBar.value = player.ps.getSan();
+        player.sanBar.fillAmount = player.ps.getSan()/player.ps.getMaxSan();
         enemies[encounterNumber].SetActive(false);
         playerWeapon.SetActive(false);
         

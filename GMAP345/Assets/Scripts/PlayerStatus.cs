@@ -53,8 +53,13 @@ public class PlayerStatus : ScriptableObject
         return san;
     }
 
+    public float getMaxHp()
+    {
+        return maxHp;
+    }
+
     public float getMaxSan() {
-        return base_san;
+        return max_san;
     }
 
     public void sanLoss(float s) {
