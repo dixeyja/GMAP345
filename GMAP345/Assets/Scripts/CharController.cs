@@ -17,11 +17,8 @@ public class CharController : MonoBehaviour
     private bool moving;
     private bool attacking = false;
 
-    public Image healthbar;
-    public Image sanBar;
-    public TextMeshProUGUI damageTextGUI;
     public TextMeshProUGUI lightTextGUI;
-    public UnityAction<HitData> hitEvent;
+    //public UnityAction<HitData> hitEvent;
 
     private AudioManager am;
 
@@ -31,12 +28,12 @@ public class CharController : MonoBehaviour
 
     #region Item Variables
 
-    public GameObject sword;
-    private Animator swordAnim;
+    public Animator swordAnim;
     public Collider bladeCollider;
 
-    public GameObject torch;
-    private Animator torchAnim;
+    public Animator torchAnim;
+
+    public Animator mapAnim; 
     #endregion
 
     #region TEMP
@@ -45,15 +42,10 @@ public class CharController : MonoBehaviour
 
     void Start()
     {
-        
-        swordAnim = sword.GetComponent<Animator>();
-        torchAnim = torch.GetComponent<Animator>();
+
         bladeCollider.enabled = false;
         canWalk = true;
         rb = GetComponent<Rigidbody>();
-
-        healthbar.fillAmount = ps.getHp()/ps.getMaxHp();
-        sanBar.fillAmount = ps.getSan()/ps.getMaxSan();
 
         am = gameObject.GetComponent<AudioManager>();
 
@@ -66,11 +58,7 @@ public class CharController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        damageTextGUI.text = ps.getDamage().ToString();
         lightTextGUI.text = ps.GetLightLevel().ToString();
-        healthbar.fillAmount = ps.getHp() / ps.getMaxHp();
-        sanBar.fillAmount = ps.getSan() / ps.getMaxSan();
-
 
         if (Input.GetKeyDown("escape"))
         {
@@ -99,7 +87,7 @@ public class CharController : MonoBehaviour
         }
         
 
-        if (Input.GetButtonDown("Equip Torch"))
+        if (inCombat == false && Input.GetButtonDown("Equip Torch"))
         {
             if (torchAnim.GetBool("isOut"))
             {
@@ -109,6 +97,20 @@ public class CharController : MonoBehaviour
             else
             {
                 torchAnim.SetBool("isOut", true);
+                am.PlaySound("TorchEquip");
+            }
+        }
+
+        if (inCombat == false && Input.GetButtonDown("Equip Map"))
+        {
+            if (mapAnim.GetBool("isOut"))
+            {
+                mapAnim.SetBool("isOut", false);
+                am.PlaySound("TorchEquip");
+            }
+            else
+            {
+                mapAnim.SetBool("isOut", true);
                 am.PlaySound("TorchEquip");
             }
         }
@@ -154,9 +156,11 @@ public class CharController : MonoBehaviour
 
             if (moveDirection != new Vector3(0, 0, 0))
             {
-                swordAnim.SetFloat("IdleToRun", 1.5f);
                 if (moving == false)
                 {
+                    swordAnim.SetFloat("IdleToRun", 1.5f);
+                    torchAnim.SetFloat("IdleToRun", 1.5f);
+                    mapAnim.SetFloat("IdleToRun", 1.5f);
                     moving = true;
                     StartCoroutine("Moving");
 
@@ -190,7 +194,6 @@ public class CharController : MonoBehaviour
         {
             cManager.EnterCombat();
             other.gameObject.SetActive(false);
-            sanBar.gameObject.SetActive(false);
             ps.sanLoss(10);
         }
 
@@ -212,7 +215,6 @@ public class CharController : MonoBehaviour
         if (other.tag == "EnemyWeapon")
         {
             ps.HpLoss(10);
-            healthbar.fillAmount = ps.getHp()/ps.getMaxHp();
         }
         else if (other.tag == "Pickup")
         {
@@ -222,9 +224,6 @@ public class CharController : MonoBehaviour
                 ps.damageUp(10);
                 ps.sanGain(20);
                 ps.hpGain(30);
-
-                damageTextGUI.text = ps.getDamage().ToString();
-                sanBar.fillAmount = ps.getSan()/ps.getMaxSan();
             } 
         }
         else if (other.tag == "LitArea")
@@ -256,7 +255,7 @@ public class CharController : MonoBehaviour
     {
         while (moving)
         {
-
+            
             am.PlaySound(footsteps[Random.Range(0, 2)]);
             yield return new WaitForSeconds(.5f);
         }

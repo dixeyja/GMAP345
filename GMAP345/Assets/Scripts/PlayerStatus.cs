@@ -62,6 +62,11 @@ public class PlayerStatus : ScriptableObject
         return max_san;
     }
 
+    public float getBaseSan()
+    {
+        return base_san;
+    }
+
     public void sanLoss(float s) {
         san -= s;
     }
@@ -72,9 +77,9 @@ public class PlayerStatus : ScriptableObject
 
     public void sanGain(float s) {
         san += s;
-        if (san >= base_san)
+        if (san >= max_san)
         {
-            san = base_san;
+            san = max_san;
         }
     }
     
