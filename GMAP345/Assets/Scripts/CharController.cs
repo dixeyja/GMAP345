@@ -174,6 +174,8 @@ public class CharController : MonoBehaviour
                     am.PlaySound(footsteps[Random.Range(0, 2)]);
                 }
                 swordAnim.SetFloat("IdleToRun", 1.0f);
+                torchAnim.SetFloat("IdleToRun", 1.0f);
+                mapAnim.SetFloat("IdleToRun", 1.0f);
                 moving = false;
                 StopCoroutine("Moving");
             }
