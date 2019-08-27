@@ -8,7 +8,6 @@ public class PlayerStatus : ScriptableObject
     // Start is called before the first frame update
     private float speed;
     public float baseSpeed;
-    private int damage;
     public int baseDamage;
     private float hp;
     public float maxHp;
@@ -18,6 +17,8 @@ public class PlayerStatus : ScriptableObject
     private int lightLevel = 0;
     public float attackSpeed = 1.0f;
 
+    public HitData hitData;
+
 
     void OnEnable()
     {
@@ -25,11 +26,11 @@ public class PlayerStatus : ScriptableObject
     }
 
     public int getDamage() {
-        return damage;
+        return hitData.hDamage;
     }
 
     public void damageUp(int d) {
-        damage += d;
+        hitData.hDamage += d;
     }
 
     public float getSpeed()
@@ -129,6 +130,6 @@ public class PlayerStatus : ScriptableObject
         hp = maxHp;
         san = base_san;
         max_san = base_san;
-        damage = baseDamage;
+        hitData.hDamage = baseDamage;
     }
 }

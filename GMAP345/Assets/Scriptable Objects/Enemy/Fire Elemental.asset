@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6521f60ca0e2afe42b8c40d2e2ec6488, type: 3}
+  m_Name: Fire Elemental
+  m_EditorClassIdentifier: 
+  speed: 10
+  maxHp: 0
+  hitData:
+    hDamage: 10
+    sDamage: 0
+    knockback: 3
