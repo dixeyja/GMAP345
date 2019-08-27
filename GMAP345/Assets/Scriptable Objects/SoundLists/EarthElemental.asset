@@ -15,7 +15,7 @@ MonoBehaviour:
   sounds:
   - clipName: AgroNoise
     clip: {fileID: 8300000, guid: 504c07ea567f5f1479407c35bacc2119, type: 3}
-    volume: 0.246
+    volume: 0.083
     pitch: 1.26
     spatialBlend: 0
     loop: 0

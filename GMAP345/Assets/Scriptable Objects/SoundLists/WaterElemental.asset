@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: WaterElemental
   m_EditorClassIdentifier: 
   sounds:
-  - clipName: Enemy
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-    spatialBlend: 0
+  - clipName: AgroNoise
+    clip: {fileID: 8300000, guid: 487cf1ccbab7d214798663de1e63b6a1, type: 3}
+    volume: 0.268
+    pitch: 0.94
+    spatialBlend: 0.995
     loop: 0
-    isOneShot: 0
+    isOneShot: 1
     src: {fileID: 0}

@@ -57,8 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5862e0ee4009fd488c45b31fe5ca99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitData: {fileID: 0}
-  enemy: {fileID: 0}
+  hitData: {fileID: 11400000, guid: 6b96344c3b6d74c42b1cdab193eeac9a, type: 2}
 --- !u!1 &1284844295057741384
 GameObject:
   m_ObjectHideFlags: 0
@@ -4713,7 +4712,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd175d9bd89fda04683a17945588b7be, type: 2}
+  - {fileID: 2100000, guid: 51d2efaeeb3d33c45a07e636f2781a3d, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -5551,7 +5550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   playerCharacter: {fileID: 0}
-  health: 40
+  maxHealth: 40
   cM: {fileID: 0}
 --- !u!1 &3030189233762825949
 GameObject:
@@ -15133,7 +15132,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd175d9bd89fda04683a17945588b7be, type: 2}
+  - {fileID: 2100000, guid: 51d2efaeeb3d33c45a07e636f2781a3d, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0

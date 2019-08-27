@@ -20,6 +20,8 @@ public class CharController : MonoBehaviour
     private double accelaration = 0.01;
     private double accelaration_time = 0;
     private float knockbackCounter = 0;
+
+    public combatManager cm;
     //public TextMeshProUGUI lightTextGUI;
     //public UnityAction<HitData> hitEvent;
     #region Audio
@@ -42,7 +44,7 @@ public class CharController : MonoBehaviour
     public combatManager cManager;
     #endregion
 
-    void Start()
+    void Awake()
     {
         swordAnim = sword.GetComponent<Animator>();
 
@@ -60,7 +62,7 @@ public class CharController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //lightTextGUI.text = ps.GetLightLevel().ToString();
+        Debug.Log( ps.GetLightLevel().ToString());
 
         attackCooldown -= Time.deltaTime;
 
@@ -123,19 +125,21 @@ public class CharController : MonoBehaviour
         }
         else
         {
-                //ps.SetLightLevel(0);
+            ps.SetLightLevel(0);
         }
 
         if (ps.getHp() <= 0)
         {
             ps.sanLoss(40);
-            ps.max_sanLoss(30);
-            cManager.EndCombat();
+            ps.max_sanLoss(20);
+            cManager.LoseCombat();
             ps.hpGain(30);
         }
         if (ps.getSan() <= 0)
         {
             Debug.Log("game over");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             SceneManager.LoadScene(2);
         }
 
@@ -214,8 +218,16 @@ public class CharController : MonoBehaviour
     {
         if (other.transform.tag == "Enemy")
         {
-            cManager.EnterCombat();
-            other.gameObject.SetActive(false);
+            cManager.EnterCombat(other.transform.GetComponent<enemyDungeonBehavior>().type);
+            if (other.transform.GetComponent<enemyDungeonBehavior>().type == "boss")
+            {
+
+            }
+            else
+            {
+                other.gameObject.SetActive(false);
+
+            }
             ps.sanLoss(10);
         }
     }
@@ -230,7 +242,7 @@ public class CharController : MonoBehaviour
     {
         if (other.tag == "Pickup")
         {
-            Debug.Log(other.isTrigger.ToString());
+            
             if (other.isTrigger) {
                 other.isTrigger = false;                    
                 ps.damageUp(10);
@@ -238,10 +250,18 @@ public class CharController : MonoBehaviour
                 ps.hpGain(30);
             } 
         }
-        else if (other.tag == "LitArea")
+    }
+
+    
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "LitArea")
         {
             ps.ConfigureLightLevel(other.transform.GetComponent<LitArea>().GetLightValue());
         }
+
+        
     }
 
     private void OnTriggerExit(Collider other)

@@ -131,5 +131,6 @@ public class PlayerStatus : ScriptableObject
         san = base_san;
         max_san = base_san;
         hitData.hDamage = baseDamage;
+        lightLevel = 0;
     }
 }

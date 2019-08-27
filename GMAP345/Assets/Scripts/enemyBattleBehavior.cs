@@ -9,7 +9,8 @@ public class enemyBattleBehavior : MonoBehaviour
     public float speed;
     public Transform playerCharacter;
     //static Animator anim;
-    public int health;
+    private int health;
+    public int maxHealth;
     public combatManager cM;
 
     private bool alive = true;
@@ -19,7 +20,13 @@ public class enemyBattleBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ResetStatus();
         //anim = GetComponent<Animator>();
+    }
+
+    private void OnEnable()
+    {
+        ResetStatus();
     }
 
     // Update is called once per frame
@@ -75,8 +82,11 @@ public class enemyBattleBehavior : MonoBehaviour
             speed = 0;
             if (alive)
             {
-                cM.EndCombat();
+                cM.addEnemiesBeat();
+                playerCharacter.GetComponent<CharController>().ps.sanGain(10);
                 alive = false;
+                ResetStatus();
+                gameObject.SetActive(false);
             }
 
         }
@@ -87,7 +97,7 @@ public class enemyBattleBehavior : MonoBehaviour
     {
         if (other.tag == "PlayerWeapon")
         {
-            health -= other.GetComponentInParent<CharController>().ps.getDamage();
+            health -= other.GetComponentInParent<CharController>().ps.hitData.hDamage;
             //anim.SetBool("isHit", true);
             //anim.SetBool("isIdle", false);
             //anim.SetBool("isWalking", false);
@@ -98,5 +108,9 @@ public class enemyBattleBehavior : MonoBehaviour
 
     }
 
-
+    private void ResetStatus()
+    {
+        health = maxHealth;
+        alive = true;
+    }
 }

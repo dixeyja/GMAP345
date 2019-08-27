@@ -9352,7 +9352,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd175d9bd89fda04683a17945588b7be, type: 2}
+  - {fileID: 2100000, guid: 51d2efaeeb3d33c45a07e636f2781a3d, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -9603,9 +9603,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2ef9af960ca5b46963b5c4019613f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: fire
   speed: 5
   playerCharacter: {fileID: 0}
-  cc: {fileID: 0}
   sightRange: 10
   sightAngle: 45
   spotted: 0
@@ -15091,7 +15091,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd175d9bd89fda04683a17945588b7be, type: 2}
+  - {fileID: 2100000, guid: 51d2efaeeb3d33c45a07e636f2781a3d, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0

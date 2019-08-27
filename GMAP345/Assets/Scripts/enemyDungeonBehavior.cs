@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class enemyDungeonBehavior : MonoBehaviour
 {
+    public string type;
     public float speed;
     public GameObject playerCharacter;
     static Animator anim;
@@ -20,7 +21,7 @@ public class enemyDungeonBehavior : MonoBehaviour
     public GameEvent PlayerEscaped;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         anim = GetComponent<Animator>();
         am = GetComponent<AudioManager>();
@@ -44,7 +45,7 @@ public class enemyDungeonBehavior : MonoBehaviour
 
                 anim.SetBool("isWalking", true);
                 anim.SetBool("isIdle", false);
-                transform.Translate(0, 0, 2 * speed * Time.deltaTime);
+                transform.Translate(0, 0, speed * Time.deltaTime);
                 if (!spotted)
                 {
                     PlayerSpotted.Raise();

@@ -1,5 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &154333142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 154333143}
+  - component: {fileID: 154333145}
+  - component: {fileID: 154333144}
+  m_Layer: 10
+  m_Name: attack (1)
+  m_TagString: EnemyAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &154333143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154333142}
+  m_LocalRotation: {x: -0, y: 0.0031174363, z: -0, w: 0.9999952}
+  m_LocalPosition: {x: -0.52, y: -1.6699982, z: 1.83}
+  m_LocalScale: {x: 12.973829, y: 12.973829, z: 12.973829}
+  m_Children: []
+  m_Father: {fileID: 8960031305716423252}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0.35700002, z: 0}
+--- !u!65 &154333145
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154333142}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.38609266, y: 0.2470419, z: 0.029671984}
+  m_Center: {x: 0.028118122, y: -0.036310915, z: 0.023696374}
+--- !u!114 &154333144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154333142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5862e0ee4009fd488c45b31fe5ca99d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitData: {fileID: 11400000, guid: a4a3007f53f56b94eb5810bff58b8d6a, type: 2}
 --- !u!1 &8960031305716516466
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +168,7 @@ Transform:
   - {fileID: 8960031305716423254}
   - {fileID: 8960031305716423250}
   - {fileID: 8960031306021330728}
+  - {fileID: 154333143}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -140,8 +199,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 11.173216, y: 9.836432, z: 2.9047775}
-  m_Center: {x: 0.57056904, y: 0.13843107, z: 0.1368599}
+  m_Size: {x: 11.173216, y: 9.836432, z: 3.5493245}
+  m_Center: {x: 0.57056904, y: 0.13843107, z: 0.4591334}
 --- !u!114 &3941729816887331145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,9 +213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 435300cbeed92c24186aa4567136cc74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
   playerCharacter: {fileID: 0}
-  health: 20
+  maxHealth: 100
   cM: {fileID: 0}
 --- !u!1 &8960031305716516470
 GameObject:
