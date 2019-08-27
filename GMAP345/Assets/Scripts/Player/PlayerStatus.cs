@@ -16,6 +16,8 @@ public class PlayerStatus : ScriptableObject
     private float max_san;
     public float base_san;
     private int lightLevel = 0;
+    public float attackSpeed = 1.0f;
+
 
     void OnEnable()
     {
@@ -109,6 +111,16 @@ public class PlayerStatus : ScriptableObject
     {
         lightLevel = i;
  
+    }
+
+    public float getAttackSpeed()
+    {
+        return attackSpeed;
+    }
+
+    public void setAttackSpeed(float s)
+    {
+        attackSpeed = s;
     }
 
     public void ResetStatus()

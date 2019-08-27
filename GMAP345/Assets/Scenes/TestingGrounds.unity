@@ -5892,111 +5892,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 304864132}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &333482032 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4810154569696490904, guid: 34a340318dcfc484a916c5cd5dad4621,
-    type: 3}
-  m_PrefabInstance: {fileID: 4810154569983835560}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &333482033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 333482032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c08107528e1f7ce468cff73ebd13c0ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 1c3f5cc83f9893940ab4ec088abf96bc, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 333482037}
-        m_MethodName: PlaySong
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: DungeonAmbience
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!114 &333482034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 333482032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c08107528e1f7ce468cff73ebd13c0ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 1339568e931fbe74a845dd430f555463, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 333482037}
-        m_MethodName: PlaySong
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: DungeonAmbience
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!114 &333482035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 333482032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c08107528e1f7ce468cff73ebd13c0ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 461a5159599ab394fbf6237d3df6d332, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 333482037}
-        m_MethodName: PlaySong
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: ArenaMusic
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!114 &333482037 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4810154569696490905, guid: 34a340318dcfc484a916c5cd5dad4621,
-    type: 3}
-  m_PrefabInstance: {fileID: 4810154569983835560}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 333482032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21a96eb946760024ab9f846744c06c36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &342060849
 GameObject:
   m_ObjectHideFlags: 0
@@ -6347,8 +6242,6 @@ MonoBehaviour:
   playerArenaPostion: {fileID: 680244252}
   enemyArenaPosition: {fileID: 1822484084}
   spotlight: {fileID: 745518975}
-  blackScreen: {fileID: 0}
-  transitionRate: 0.02
   combatStart: {fileID: 11400000, guid: 461a5159599ab394fbf6237d3df6d332, type: 2}
   combatEnd: {fileID: 11400000, guid: 1339568e931fbe74a845dd430f555463, type: 2}
 --- !u!4 &465664653
@@ -21987,11 +21880,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6019724368979840349, guid: 446b39744d0f554408a725410315087e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2018694315355560047, guid: 446b39744d0f554408a725410315087e,
         type: 3}
       propertyPath: healthbar
@@ -22017,6 +21905,11 @@ PrefabInstance:
       propertyPath: cManager
       value: 
       objectReference: {fileID: 465664652}
+    - target: {fileID: 6019724368979840349, guid: 446b39744d0f554408a725410315087e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8862141335509358489, guid: 446b39744d0f554408a725410315087e,
         type: 3}
       propertyPath: m_Avatar

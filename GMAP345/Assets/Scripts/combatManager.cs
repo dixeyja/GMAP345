@@ -15,8 +15,8 @@ public class combatManager : MonoBehaviour
     private Vector3 currentDungeonPosition;
     private Quaternion currentDungeonRotation;
 
-    public Image blackScreen;
-    public float transitionRate = .02f;
+    //public Image blackScreen;
+    //public float transitionRate = .02f;
 
     private int encounterNumber = 0;
 
@@ -26,7 +26,7 @@ public class combatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Combat Manager's number of Encounters: " + encounterNumber.ToString());
+        //Debug.Log("Combat Manager's number of Encounters: " + encounterNumber.ToString());
     }
     
     public void EnterCombat()
@@ -52,12 +52,11 @@ public class combatManager : MonoBehaviour
 
     IEnumerator FinishUpCombat()
     {
-        //yield return new WaitForSeconds(3);
-        yield return null;
+        yield return new WaitForSeconds(3);
+        //yield return null;
         player.transform.position = currentDungeonPosition;
         player.transform.rotation = currentDungeonRotation;
-        player.sanBar.gameObject.SetActive(true);
-        player.sanBar.fillAmount = player.ps.getSan()/player.ps.getMaxSan();
+        //player.sanBar.fillAmount = player.ps.getSan()/player.ps.getMaxSan();
         enemies[encounterNumber].SetActive(false);
         playerWeapon.SetActive(false);
         

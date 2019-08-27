@@ -13,6 +13,6 @@ public class HitData
     {
         hDamage = 5f;
         sDamage = 0f;
-        knockback = 0f;
+        knockback = 1f;
     }
 }

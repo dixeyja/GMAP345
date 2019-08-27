@@ -17,7 +17,7 @@ public class CharController : MonoBehaviour
     private bool moving;
     private bool attacking = false;
 
-    public TextMeshProUGUI lightTextGUI;
+    //public TextMeshProUGUI lightTextGUI;
     //public UnityAction<HitData> hitEvent;
 
     private AudioManager am;
@@ -33,7 +33,7 @@ public class CharController : MonoBehaviour
 
     public Animator torchAnim;
 
-    public Animator mapAnim; 
+    public Animator mapAnim;
     #endregion
 
     #region TEMP
@@ -42,8 +42,8 @@ public class CharController : MonoBehaviour
 
     void Start()
     {
-
         bladeCollider.enabled = false;
+
         canWalk = true;
         rb = GetComponent<Rigidbody>();
 
@@ -58,7 +58,7 @@ public class CharController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lightTextGUI.text = ps.GetLightLevel().ToString();
+        //lightTextGUI.text = ps.GetLightLevel().ToString();
 
         if (Input.GetKeyDown("escape"))
         {
@@ -240,6 +240,12 @@ public class CharController : MonoBehaviour
         {
             ps.SetLightLevel(0);
         }
+    }
+
+    public void stowTools()
+    {
+        mapAnim.SetBool("isOut", false);
+        torchAnim.SetBool("isOut", true);
     }
 
 
