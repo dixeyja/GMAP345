@@ -173,7 +173,7 @@ public class CharController : MonoBehaviour
                 }
                 else
                 {
-                    accelaration_time = 0;
+                    accelaration_time -= 2*Time.fixedDeltaTime;
                     if (moving != false)
                     {
                         am.PlaySound(footsteps[Random.Range(0, 2)]);
@@ -194,7 +194,14 @@ public class CharController : MonoBehaviour
             knockbackCounter -= Time.deltaTime;
         }
 
-        transform.Translate(moveDirection.normalized * (ps.getSpeed() * Time.fixedDeltaTime + (float)(accelaration * accelaration_time * accelaration_time)));
+        float acc = (float)(accelaration * accelaration_time);
+        if (acc >= .75 * ps.getSpeed())
+        {
+            acc = (float)(.75 * ps.getSpeed());
+        }
+        transform.Translate(moveDirection.normalized * (ps.getSpeed() + acc) * Time.fixedDeltaTime) ;
+
+        
 
         //if (Input.GetKey(KeyCode.Space)) {
         //    if (rb.position.y <= 0) {
