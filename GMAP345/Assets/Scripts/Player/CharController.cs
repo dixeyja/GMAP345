@@ -12,13 +12,13 @@ public class CharController : MonoBehaviour
     private Rigidbody rb;
     private bool map_open;
     private Vector3 moveDirection;
-
     private bool canWalk;
     private bool moving;
     private bool attacking = false;
     private float attackCooldown = 0;
     public bool inCombat = false;
-
+    private double accelaration = 0.01;
+    private double accelaration_time = 0;
     //public TextMeshProUGUI lightTextGUI;
     //public UnityAction<HitData> hitEvent;
     #region Audio
@@ -111,6 +111,7 @@ public class CharController : MonoBehaviour
             else
             {
                 mapAnim.SetBool("isOut", true);
+                
                 am.PlaySound("TorchEquip");
             }
         }
@@ -165,10 +166,12 @@ public class CharController : MonoBehaviour
                     StartCoroutine("Moving");
 
                 }
+                accelaration_time += Time.fixedDeltaTime;
                 
             }
             else
             {
+                accelaration_time = 0;
                 if (moving != false)
                 {
                     am.PlaySound(footsteps[Random.Range(0, 2)]);
@@ -180,7 +183,8 @@ public class CharController : MonoBehaviour
                 StopCoroutine("Moving");
             }
 
-            transform.Translate(moveDirection.normalized * ps.getSpeed() * Time.fixedDeltaTime);
+            transform.Translate(moveDirection.normalized * (ps.getSpeed() * Time.fixedDeltaTime + (float) (accelaration * accelaration_time * accelaration_time))) ;
+
         }
 
         //if (Input.GetKey(KeyCode.Space)) {
