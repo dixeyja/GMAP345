@@ -124,6 +124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireElemental(Battle) (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3030189233762825947, guid: c07ab6e4eae8a3c4daa31045bbae453f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3030189233762659067, guid: c07ab6e4eae8a3c4daa31045bbae453f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -803,6 +808,11 @@ PrefabInstance:
       propertyPath: cManager
       value: 
       objectReference: {fileID: 1342575156533019018}
+    - target: {fileID: 6161774980878712188, guid: 446b39744d0f554408a725410315087e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 446b39744d0f554408a725410315087e, type: 3}
 --- !u!1 &1487150015 stripped
@@ -1033,18 +1043,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1572666281, guid: c07ab6e4eae8a3c4daa31045bbae453f, type: 3}
-      propertyPath: playerCharacter
-      value: 
-      objectReference: {fileID: 1758368223}
-    - target: {fileID: 1572666281, guid: c07ab6e4eae8a3c4daa31045bbae453f, type: 3}
-      propertyPath: cM
-      value: 
-      objectReference: {fileID: 1342575156533019018}
-    - target: {fileID: 1572666281, guid: c07ab6e4eae8a3c4daa31045bbae453f, type: 3}
-      propertyPath: health
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 820504757, guid: c07ab6e4eae8a3c4daa31045bbae453f, type: 3}
       propertyPath: playerCharacter
       value: 
@@ -1053,6 +1051,15 @@ PrefabInstance:
       propertyPath: cM
       value: 
       objectReference: {fileID: 1342575156533019018}
+    - target: {fileID: 997261008, guid: c07ab6e4eae8a3c4daa31045bbae453f, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 1841560709}
+    - target: {fileID: 997261008, guid: c07ab6e4eae8a3c4daa31045bbae453f, type: 3}
+      propertyPath: hitData
+      value: 
+      objectReference: {fileID: 11400000, guid: 6b96344c3b6d74c42b1cdab193eeac9a,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c07ab6e4eae8a3c4daa31045bbae453f, type: 3}
 --- !u!1 &1841560709

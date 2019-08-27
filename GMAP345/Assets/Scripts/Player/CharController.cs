@@ -19,6 +19,7 @@ public class CharController : MonoBehaviour
     public bool inCombat = false;
     private double accelaration = 0.01;
     private double accelaration_time = 0;
+    private float knockbackCounter = 0;
     //public TextMeshProUGUI lightTextGUI;
     //public UnityAction<HitData> hitEvent;
     #region Audio
@@ -147,45 +148,53 @@ public class CharController : MonoBehaviour
     private void FixedUpdate()
     {
         
-        
-        if (canWalk)
+        if (knockbackCounter <= 0)
         {
-            float translate = Input.GetAxis("Vertical");
-            float strafe = Input.GetAxis("Horizontal");
-
-            moveDirection = new Vector3(strafe, 0, translate);
-
-            if (moveDirection != new Vector3(0, 0, 0))
+            if (canWalk)
             {
-                if (moving == false)
+                float translate = Input.GetAxis("Vertical");
+                float strafe = Input.GetAxis("Horizontal");
+
+                moveDirection = new Vector3(strafe, 0, translate);
+
+                if (moveDirection != new Vector3(0, 0, 0))
                 {
-                    swordAnim.SetFloat("IdleToRun", 1.5f);
-                    torchAnim.SetFloat("IdleToRun", 1.5f);
-                    mapAnim.SetFloat("IdleToRun", 1.5f);
-                    moving = true;
-                    StartCoroutine("Moving");
+                    if (moving == false)
+                    {
+                        swordAnim.SetFloat("IdleToRun", 1.5f);
+                        torchAnim.SetFloat("IdleToRun", 1.5f);
+                        mapAnim.SetFloat("IdleToRun", 1.5f);
+                        moving = true;
+                        StartCoroutine("Moving");
+
+                    }
+                    accelaration_time += Time.fixedDeltaTime;
 
                 }
-                accelaration_time += Time.fixedDeltaTime;
-                
-            }
-            else
-            {
-                accelaration_time = 0;
-                if (moving != false)
+                else
                 {
-                    am.PlaySound(footsteps[Random.Range(0, 2)]);
+                    accelaration_time = 0;
+                    if (moving != false)
+                    {
+                        am.PlaySound(footsteps[Random.Range(0, 2)]);
+                    }
+                    swordAnim.SetFloat("IdleToRun", 1.0f);
+                    torchAnim.SetFloat("IdleToRun", 1.0f);
+                    mapAnim.SetFloat("IdleToRun", 1.0f);
+                    moving = false;
+                    StopCoroutine("Moving");
                 }
-                swordAnim.SetFloat("IdleToRun", 1.0f);
-                torchAnim.SetFloat("IdleToRun", 1.0f);
-                mapAnim.SetFloat("IdleToRun", 1.0f);
-                moving = false;
-                StopCoroutine("Moving");
+
+                //transform.Translate(moveDirection.normalized * (ps.getSpeed() * Time.fixedDeltaTime + (float)(accelaration * accelaration_time * accelaration_time)));
+
             }
-
-            transform.Translate(moveDirection.normalized * (ps.getSpeed() * Time.fixedDeltaTime + (float) (accelaration * accelaration_time * accelaration_time))) ;
-
         }
+        else
+        {
+            knockbackCounter -= Time.deltaTime;
+        }
+
+        transform.Translate(moveDirection.normalized * (ps.getSpeed() * Time.fixedDeltaTime + (float)(accelaration * accelaration_time * accelaration_time)));
 
         //if (Input.GetKey(KeyCode.Space)) {
         //    if (rb.position.y <= 0) {
@@ -201,12 +210,6 @@ public class CharController : MonoBehaviour
             cManager.EnterCombat();
             other.gameObject.SetActive(false);
             ps.sanLoss(10);
-        }
-
-        if (other.transform.tag == "EnemyWeapon")
-        {
-            ps.HpLoss(20);
-            
         }
     }
 
@@ -256,5 +259,11 @@ public class CharController : MonoBehaviour
             am.PlaySound(footsteps[Random.Range(0, 2)]);
             yield return new WaitForSeconds(.5f);
         }
+    }
+
+    public void KnockBack(Vector3 direction, float strength)
+    {
+        knockbackCounter = strength / 3;
+        this.GetComponent<Rigidbody>().AddForce(direction * (strength * 200));
     }
 }

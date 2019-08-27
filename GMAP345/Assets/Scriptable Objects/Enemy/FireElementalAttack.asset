@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6521f60ca0e2afe42b8c40d2e2ec6488, type: 3}
-  m_Name: Fire Elemental
+  m_Script: {fileID: 11500000, guid: 78e58f461dac2a04b838597f1300d997, type: 3}
+  m_Name: FireElementalAttack
   m_EditorClassIdentifier: 
-  speed: 10
-  maxHp: 0
-  hitData:
-    hDamage: 10
-    sDamage: 0
-    knockback: 3
+  hDamage: 10
+  sDamage: 0
+  knockback: 10

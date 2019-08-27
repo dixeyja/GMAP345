@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9844ca32a56476f4686e28902cdcb962, type: 3}
-  m_Name: Player Stats
+  m_Script: {fileID: 11500000, guid: 78e58f461dac2a04b838597f1300d997, type: 3}
+  m_Name: Sword Attack
   m_EditorClassIdentifier: 
-  baseSpeed: 10
-  baseDamage: 10
-  maxHp: 100
-  base_san: 100
-  attackSpeed: 1
-  hitData: {fileID: 11400000, guid: 3d6858c856c26b747b09f96ca75eb0cd, type: 2}
+  hDamage: 10
+  sDamage: 0
+  knockback: 3

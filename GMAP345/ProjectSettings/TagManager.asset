@@ -7,9 +7,9 @@ TagManager:
   - Fire
   - Enemy
   - PlayerWeapon
-  - EnemyWeapon
   - Pickup
   - LitArea
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX

@@ -87,8 +87,6 @@ public class enemyBattleBehavior : MonoBehaviour
     {
         if (other.tag == "PlayerWeapon")
         {
-            Debug.Log("Hit On Enemy Detected");
-            Debug.Log(other.GetComponentInParent<CharController>().ps.getDamage());
             health -= other.GetComponentInParent<CharController>().ps.getDamage();
             //anim.SetBool("isHit", true);
             //anim.SetBool("isIdle", false);
