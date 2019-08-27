@@ -129,5 +129,6 @@ public class PlayerStatus : ScriptableObject
         hp = maxHp;
         san = base_san;
         max_san = base_san;
+        damage = baseDamage;
     }
 }

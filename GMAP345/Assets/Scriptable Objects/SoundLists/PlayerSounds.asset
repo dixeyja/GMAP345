@@ -13,14 +13,6 @@ MonoBehaviour:
   m_Name: PlayerSounds
   m_EditorClassIdentifier: 
   sounds:
-  - clipName: SwordUnsheath
-    clip: {fileID: 8300000, guid: febf822fafe508342af2dedbcf1792b3, type: 3}
-    volume: 0.033
-    pitch: 1
-    spatialBlend: 0
-    loop: 0
-    isOneShot: 1
-    src: {fileID: 0}
   - clipName: Step1
     clip: {fileID: 8300000, guid: 17c9f388360d1f1459ce1be88774327d, type: 3}
     volume: 0.128

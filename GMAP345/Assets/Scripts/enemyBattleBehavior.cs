@@ -80,16 +80,15 @@ public class enemyBattleBehavior : MonoBehaviour
             }
 
         }
-
-        Debug.Log("Enemy Battler Speed:" + speed.ToString());
         Debug.Log("Enemy Battler Health:" + health.ToString());
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Hit On Enemy Detected");
         if (other.tag == "PlayerWeapon")
         {
+            Debug.Log("Hit On Enemy Detected");
+            Debug.Log(other.GetComponentInParent<CharController>().ps.getDamage());
             health -= other.GetComponentInParent<CharController>().ps.getDamage();
             //anim.SetBool("isHit", true);
             //anim.SetBool("isIdle", false);

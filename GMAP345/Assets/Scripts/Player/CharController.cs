@@ -16,20 +16,21 @@ public class CharController : MonoBehaviour
     private bool canWalk;
     private bool moving;
     private bool attacking = false;
+    private float attackCooldown = 0;
+    public bool inCombat = false;
 
     //public TextMeshProUGUI lightTextGUI;
     //public UnityAction<HitData> hitEvent;
-
+    #region Audio
     private AudioManager am;
 
     private string[] footsteps;
-
-    public bool inCombat = false;
+    #endregion
 
     #region Item Variables
 
-    public Animator swordAnim;
-    public Collider bladeCollider;
+    public GameObject sword;
+    private Animator swordAnim;
 
     public Animator torchAnim;
 
@@ -42,7 +43,7 @@ public class CharController : MonoBehaviour
 
     void Start()
     {
-        bladeCollider.enabled = false;
+        swordAnim = sword.GetComponent<Animator>();
 
         canWalk = true;
         rb = GetComponent<Rigidbody>();
@@ -60,6 +61,8 @@ public class CharController : MonoBehaviour
     {
         //lightTextGUI.text = ps.GetLightLevel().ToString();
 
+        attackCooldown -= Time.deltaTime;
+
         if (Input.GetKeyDown("escape"))
         {
             Application.Quit();
@@ -69,18 +72,15 @@ public class CharController : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                bladeCollider.enabled = true;
-                swordAnim.SetBool("isAttacking", true);
-                swordAnim.SetBool("isIdle", false);
-                if (attacking == false)
+                if (attackCooldown <= 0)
                 {
-                    attacking = true;
-                    StartCoroutine("SwordSwing");
+                    swordAnim.SetBool("isAttacking", true);
+                    swordAnim.SetBool("isIdle", false);
+                    attackCooldown = 1 / ps.attackSpeed;
                 }
             }
             else
             {
-                bladeCollider.enabled = false;
                 swordAnim.SetBool("isAttacking", false);
                 swordAnim.SetBool("isIdle", true);
             }
@@ -183,11 +183,11 @@ public class CharController : MonoBehaviour
             transform.Translate(moveDirection.normalized * ps.getSpeed() * Time.fixedDeltaTime);
         }
 
-        if (Input.GetKey(KeyCode.Space)) {
-            if (rb.position.y <= 0) {
-                rb.AddForce(0, 50, 0);
-            }
-        }
+        //if (Input.GetKey(KeyCode.Space)) {
+        //    if (rb.position.y <= 0) {
+        //        rb.AddForce(0, 50, 0);
+        //    }
+        //}
     }
 
     private void OnCollisionEnter(Collision other)
@@ -214,11 +214,7 @@ public class CharController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "EnemyWeapon")
-        {
-            ps.HpLoss(10);
-        }
-        else if (other.tag == "Pickup")
+        if (other.tag == "Pickup")
         {
             Debug.Log(other.isTrigger.ToString());
             if (other.isTrigger) {
@@ -245,19 +241,8 @@ public class CharController : MonoBehaviour
     public void stowTools()
     {
         mapAnim.SetBool("isOut", false);
-        torchAnim.SetBool("isOut", true);
+        torchAnim.SetBool("isOut", false);
     }
-
-
-    public IEnumerator SwordSwing()
-    {
-
-        yield return new WaitForSeconds(.25f);
-        am.PlaySound("SwordUnsheath");
-        yield return new WaitForSeconds(.25f);
-        attacking = false;
-    }
-
 
     private IEnumerator Moving()
     {

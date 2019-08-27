@@ -6234,7 +6234,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1670730746}
-  playerWeapon: {fileID: 1333694072}
   enemies:
   - {fileID: 820504756}
   - {fileID: 245729435}
@@ -21905,6 +21904,16 @@ PrefabInstance:
       propertyPath: cManager
       value: 
       objectReference: {fileID: 465664652}
+    - target: {fileID: 2018694315355560047, guid: 446b39744d0f554408a725410315087e,
+        type: 3}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 1333694072}
+    - target: {fileID: 2018694315355560047, guid: 446b39744d0f554408a725410315087e,
+        type: 3}
+      propertyPath: torchAnim
+      value: 
+      objectReference: {fileID: 2018694315281418708}
     - target: {fileID: 6019724368979840349, guid: 446b39744d0f554408a725410315087e,
         type: 3}
       propertyPath: m_IsActive
@@ -21918,6 +21927,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4679886951363160956, guid: 446b39744d0f554408a725410315087e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 446b39744d0f554408a725410315087e, type: 3}
+--- !u!95 &2018694315281418708 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2472070878288880942, guid: 446b39744d0f554408a725410315087e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2018694315281418707}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2121030297811919712
 PrefabInstance:
   m_ObjectHideFlags: 0

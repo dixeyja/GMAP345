@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class combatManager : MonoBehaviour
 {
     public CharController player;
-    public GameObject playerWeapon;
     public List<GameObject> enemies;
     public Transform playerArenaPostion;
     public Transform enemyArenaPosition;
@@ -38,8 +37,9 @@ public class combatManager : MonoBehaviour
         player.transform.position = playerArenaPostion.position;
         enemies[encounterNumber].SetActive(true);
         enemies[encounterNumber].transform.position = enemyArenaPosition.position;
-        playerWeapon.SetActive(true);
+        player.sword.SetActive(true);
         player.inCombat = true;
+        player.stowTools();
         combatStart.Raise();
     }
 
@@ -52,13 +52,13 @@ public class combatManager : MonoBehaviour
 
     IEnumerator FinishUpCombat()
     {
-        yield return new WaitForSeconds(3);
-        //yield return null;
+        //yield return new WaitForSeconds(3);
+        yield return null;
         player.transform.position = currentDungeonPosition;
         player.transform.rotation = currentDungeonRotation;
         //player.sanBar.fillAmount = player.ps.getSan()/player.ps.getMaxSan();
         enemies[encounterNumber].SetActive(false);
-        playerWeapon.SetActive(false);
+        player.sword.SetActive(false);
         
         encounterNumber++;
     }
