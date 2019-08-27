@@ -12457,16 +12457,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireElemental(Battle)
       objectReference: {fileID: 0}
-    - target: {fileID: 3030189233762825947, guid: c07ab6e4eae8a3c4daa31045bbae453f,
-        type: 3}
-      propertyPath: m_TagString
-      value: EnemyWeapon
-      objectReference: {fileID: 0}
-    - target: {fileID: 3030189233762825947, guid: c07ab6e4eae8a3c4daa31045bbae453f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3030189233762659067, guid: c07ab6e4eae8a3c4daa31045bbae453f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12522,9 +12512,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3030189233762825944, guid: c07ab6e4eae8a3c4daa31045bbae453f, type: 3}
-    - {fileID: 1572666281, guid: c07ab6e4eae8a3c4daa31045bbae453f, type: 3}
+    - target: {fileID: 820504757, guid: c07ab6e4eae8a3c4daa31045bbae453f, type: 3}
+      propertyPath: playerCharacter
+      value: 
+      objectReference: {fileID: 212685249}
+    - target: {fileID: 820504757, guid: c07ab6e4eae8a3c4daa31045bbae453f, type: 3}
+      propertyPath: cM
+      value: 
+      objectReference: {fileID: 465664652}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c07ab6e4eae8a3c4daa31045bbae453f, type: 3}
 --- !u!1 &820504756 stripped
 GameObject:
@@ -12532,22 +12528,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 820504755}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &820504757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 820504756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 435300cbeed92c24186aa4567136cc74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  playerCharacter: {fileID: 212685249}
-  health: 40
-  cM: {fileID: 465664652}
 --- !u!4 &820504761 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3030189233762659067, guid: c07ab6e4eae8a3c4daa31045bbae453f,

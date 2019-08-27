@@ -5405,7 +5405,7 @@ GameObject:
   - component: {fileID: 3030189233755391241}
   - component: {fileID: 3030189233762825945}
   - component: {fileID: 3030189233762825946}
-  - component: {fileID: 1572666281}
+  - component: {fileID: 820504757}
   m_Layer: 10
   m_Name: FireElemental(Battle)
   m_TagString: EnemyWeapon
@@ -5477,7 +5477,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.05892728, y: 0.117094845, z: 0.074188024}
   m_Center: {x: 0.00308314, y: 0.038169377, z: 0.0028904066}
---- !u!114 &1572666281
+--- !u!114 &820504757
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5491,7 +5491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   playerCharacter: {fileID: 0}
-  health: 60
+  health: 40
   cM: {fileID: 0}
 --- !u!1 &3030189233762825949
 GameObject:

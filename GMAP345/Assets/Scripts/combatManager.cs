@@ -54,11 +54,11 @@ public class combatManager : MonoBehaviour
     {
         //yield return new WaitForSeconds(3);
         yield return null;
+        player.sword.SetActive(false);
         player.transform.position = currentDungeonPosition;
         player.transform.rotation = currentDungeonRotation;
         //player.sanBar.fillAmount = player.ps.getSan()/player.ps.getMaxSan();
         enemies[encounterNumber].SetActive(false);
-        player.sword.SetActive(false);
         
         encounterNumber++;
     }

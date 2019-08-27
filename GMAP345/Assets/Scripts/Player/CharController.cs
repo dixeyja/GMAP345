@@ -134,7 +134,7 @@ public class CharController : MonoBehaviour
         if (ps.getSan() <= 0)
         {
             Debug.Log("game over");
-            Application.Quit();
+            SceneManager.LoadScene(2);
         }
 
 

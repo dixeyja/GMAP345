@@ -5,10 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/CharacterFirstPerson.unity
-    guid: f2f18f678332b48458bb0e9c5ab081bf
   - enabled: 1
-    path: Assets/Scenes/TestingGrounds.unity
-    guid: 19a59f3509b563945a081f1c55b0145d
+    path: Assets/Scenes/StartScreen.unity
+    guid: 033126a45c2537e4d8cf58468ca2e564
+  - enabled: 1
+    path: Assets/Scenes/Dungeonmain.unity
+    guid: 2dc521a0e2f4003479892a599ff3d862
+  - enabled: 1
+    path: Assets/Scenes/LoseScreen.unity
+    guid: 1e3637e56756515429a85c56fab01b58
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: ecb88df2a59dabf4db66fb586e1edd5f
+  - enabled: 1
+    path: Assets/Scenes/Controls.unity
+    guid: 4685875346f324843a63a798d792b9b7
   m_configObjects: {}
