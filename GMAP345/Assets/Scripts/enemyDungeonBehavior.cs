@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class enemyDungeonBehavior : MonoBehaviour
 {
     public float speed;
-    public Transform playerCharacter;
-    public CharController cc;
+    public GameObject playerCharacter;
     static Animator anim;
     //distance in which the enemy can see the player
     public float sightRange = 20f;
@@ -31,13 +30,13 @@ public class enemyDungeonBehavior : MonoBehaviour
     void Update()
     {
         //Subtraction between two vectors gives you the direction from on point to another
-        Vector3 direction = playerCharacter.position - this.transform.position;
+        Vector3 direction = playerCharacter.transform.position - this.transform.position;
         float angle = Vector3.Angle(direction, this.transform.forward);
 
 
-        if (cc.torchAnim.GetBool("isOut"))
+        if (playerCharacter.GetComponent<CharController>().torchAnim.GetBool("isOut"))
         {
-            if (Vector3.Distance(playerCharacter.position, this.transform.position) < 0.33 * sightRange && angle < sightAngle)
+            if (Vector3.Distance(playerCharacter.transform.position, this.transform.position) < 3.0f * sightRange && angle < sightAngle)
             {
                 direction.y = 0;
 
@@ -67,7 +66,7 @@ public class enemyDungeonBehavior : MonoBehaviour
         }
         else
         {
-            if (Vector3.Distance(playerCharacter.position, this.transform.position) < sightRange && angle < 3.0 * sightAngle)
+            if (Vector3.Distance(playerCharacter.transform.position, this.transform.position) < sightRange && angle < sightAngle)
             {
                 direction.y = 0;
 
