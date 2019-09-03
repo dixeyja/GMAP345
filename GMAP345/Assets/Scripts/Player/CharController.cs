@@ -20,8 +20,6 @@ public class CharController : MonoBehaviour
     private double accelaration = 0.01;
     private double accelaration_time = 0;
     private float knockbackCounter = 0;
-
-    public combatManager cm;
     //public TextMeshProUGUI lightTextGUI;
     //public UnityAction<HitData> hitEvent;
     #region Audio
@@ -172,12 +170,12 @@ public class CharController : MonoBehaviour
                         StartCoroutine("Moving");
 
                     }
-                    accelaration_time += Time.fixedDeltaTime;
+                    //accelaration_time += Time.fixedDeltaTime;
 
                 }
                 else
                 {
-                    accelaration_time -= 2*Time.fixedDeltaTime;
+                    //accelaration_time -= 2*Time.fixedDeltaTime;
                     if (moving != false)
                     {
                         am.PlaySound(footsteps[Random.Range(0, 2)]);
@@ -189,7 +187,14 @@ public class CharController : MonoBehaviour
                     StopCoroutine("Moving");
                 }
 
-                //transform.Translate(moveDirection.normalized * (ps.getSpeed() * Time.fixedDeltaTime + (float)(accelaration * accelaration_time * accelaration_time)));
+                if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                {
+                    transform.Translate(moveDirection.normalized * ((ps.getSpeed() * 1.75f) * Time.fixedDeltaTime));
+                }
+                else
+                {
+                    transform.Translate(moveDirection.normalized * (ps.getSpeed() * Time.fixedDeltaTime));
+                }
 
             }
         }
@@ -198,12 +203,12 @@ public class CharController : MonoBehaviour
             knockbackCounter -= Time.deltaTime;
         }
 
-        float acc = (float)(accelaration * accelaration_time);
-        if (acc >= .75 * ps.getSpeed())
-        {
-            acc = (float)(.75 * ps.getSpeed());
-        }
-        transform.Translate(moveDirection.normalized * (ps.getSpeed() + acc) * Time.fixedDeltaTime) ;
+        //float acc = (float)(accelaration * accelaration_time);
+        //if (acc >= .75 * ps.getSpeed())
+        //{
+        //    acc = (float)(.75 * ps.getSpeed());
+        //}
+        //transform.Translate(moveDirection.normalized * (ps.getSpeed() + acc) * Time.fixedDeltaTime) ;
 
         
 
@@ -284,7 +289,15 @@ public class CharController : MonoBehaviour
         {
             
             am.PlaySound(footsteps[Random.Range(0, 2)]);
-            yield return new WaitForSeconds(.5f);
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            {
+                yield return new WaitForSeconds(.25f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(.5f);
+
+            }
         }
     }
 

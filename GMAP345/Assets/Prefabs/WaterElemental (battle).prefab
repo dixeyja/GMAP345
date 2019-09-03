@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 6093405175743079612}
   - component: {fileID: 226619383142979537}
   - component: {fileID: 4832493257128978129}
+  - component: {fileID: 6839403809066988745}
   m_Layer: 0
   m_Name: WaterElemental (battle)
   m_TagString: Untagged
@@ -262,3 +263,16 @@ MonoBehaviour:
   muzzlePoint: {fileID: 1427237478}
   projectile: {fileID: 6422820999095383092, guid: 31b379e66571ade46a993bd6392ac9de,
     type: 3}
+--- !u!114 &6839403809066988745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093405175743046172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a4b18c74cd4bd44ea220bee8e7d6a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundList: {fileID: 11400000, guid: ec9f4f81c25a37b4895a4f067f068293, type: 2}

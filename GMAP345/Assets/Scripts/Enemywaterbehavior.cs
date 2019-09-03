@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(AudioManager))]
 public class Enemywaterbehavior : MonoBehaviour
 {
+    private AudioManager am;
     public string type;
     public float speed;
     public Transform playerCharacter;
@@ -27,6 +29,7 @@ public class Enemywaterbehavior : MonoBehaviour
     void Start()
     {
         ResetStatus();
+        am = this.GetComponent<AudioManager>();
         tShoot = GetComponent<TurretShooter>();
         //anim = GetComponent<Animator>();
     }
@@ -35,7 +38,7 @@ public class Enemywaterbehavior : MonoBehaviour
     void Update()
     {
 
-        if (Vector3.Distance(playerCharacter.position, this.transform.position) < 20 && alive)
+        if (alive)
         {
             Vector3 direction = playerCharacter.position - this.transform.position;
             direction.y = 0;
@@ -130,6 +133,7 @@ public class Enemywaterbehavior : MonoBehaviour
     {
         if (other.tag == "PlayerWeapon")
         {
+            am.PlaySound("Damage");
             health -= other.GetComponentInParent<CharController>().ps.hitData.hDamage;
             //anim.SetBool("isHit", true);
             //anim.SetBool("isIdle", false);

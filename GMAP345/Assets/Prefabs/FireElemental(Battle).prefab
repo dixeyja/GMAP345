@@ -5464,6 +5464,7 @@ GameObject:
   - component: {fileID: 3030189233762825945}
   - component: {fileID: 3030189233762825946}
   - component: {fileID: 820504757}
+  - component: {fileID: 8929598766893254509}
   m_Layer: 10
   m_Name: FireElemental(Battle)
   m_TagString: Untagged
@@ -5552,6 +5553,19 @@ MonoBehaviour:
   playerCharacter: {fileID: 0}
   maxHealth: 40
   cM: {fileID: 0}
+--- !u!114 &8929598766893254509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3030189233762825947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a4b18c74cd4bd44ea220bee8e7d6a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundList: {fileID: 11400000, guid: ec9f4f81c25a37b4895a4f067f068293, type: 2}
 --- !u!1 &3030189233762825949
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioManager))]
 public class enemyBattleBehavior : MonoBehaviour
 {
-
+    private AudioManager am;
     public float speed;
     public Transform playerCharacter;
     //static Animator anim;
@@ -20,6 +21,7 @@ public class enemyBattleBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        am = this.GetComponent<AudioManager>();
         ResetStatus();
         //anim = GetComponent<Animator>();
     }
@@ -33,7 +35,7 @@ public class enemyBattleBehavior : MonoBehaviour
     void Update()
     {
         
-        if(Vector3.Distance(playerCharacter.position, this.transform.position) < 10 && alive)
+        if(alive)
         {
             Vector3 direction = playerCharacter.position - this.transform.position;
             direction.y = 0;
@@ -97,6 +99,7 @@ public class enemyBattleBehavior : MonoBehaviour
     {
         if (other.tag == "PlayerWeapon")
         {
+            am.PlaySound("Damage");
             health -= other.GetComponentInParent<CharController>().ps.hitData.hDamage;
             //anim.SetBool("isHit", true);
             //anim.SetBool("isIdle", false);
