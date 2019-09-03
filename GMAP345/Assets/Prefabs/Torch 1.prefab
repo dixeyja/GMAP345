@@ -58,7 +58,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681527732477851965}
-  m_LocalRotation: {x: 0.08925062, y: 0.29518586, z: 0.93587965, w: -0.17037897}
+  m_LocalRotation: {x: 0.08924849, y: 0.29518735, z: 0.93587923, w: -0.1703798}
   m_LocalPosition: {x: -4.889, y: 6.767, z: 35.993}
   m_LocalScale: {x: 12.437946, y: 163.97694, z: 12.437947}
   m_Children:
@@ -4835,7 +4835,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3729463709324440058}
   m_LocalRotation: {x: -0.696593, y: -0.000000029802319, z: 0.0000001490116, w: 0.71746665}
-  m_LocalPosition: {x: -0.0025, y: 0.00062, z: 0.0058}
+  m_LocalPosition: {x: 0.0011, y: 0.0062, z: -0.0034}
   m_LocalScale: {x: 0.51392674, y: 0.513927, z: 0.5139271}
   m_Children: []
   m_Father: {fileID: 3122252295494203904}
@@ -8585,7 +8585,7 @@ ParticleSystem:
     rangeCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.09
+      scalar: 3.9
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -8638,7 +8638,7 @@ ParticleSystem:
     intensityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.77
+      scalar: 1.42
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -9539,9 +9539,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 724329339
+  m_SortingLayer: 1
+  m_SortingOrder: 5
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
