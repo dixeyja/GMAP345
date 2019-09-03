@@ -15,6 +15,7 @@ public class CharController : MonoBehaviour
     private bool canWalk;
     private bool moving;
     private bool attacking = false;
+    public bool isSprinting = false;
     private float attackCooldown = 0;
     public bool inCombat = false;
     private double accelaration = 0.01;
@@ -163,7 +164,10 @@ public class CharController : MonoBehaviour
                 {
                     if (moving == false)
                     {
-                        swordAnim.SetFloat("IdleToRun", 1.5f);
+                        if (inCombat)
+                        {
+                            swordAnim.SetFloat("IdleToRun", 1.5f);
+                        }
                         torchAnim.SetFloat("IdleToRun", 1.5f);
                         mapAnim.SetFloat("IdleToRun", 1.5f);
                         moving = true;
@@ -180,7 +184,10 @@ public class CharController : MonoBehaviour
                     {
                         am.PlaySound(footsteps[Random.Range(0, 2)]);
                     }
-                    swordAnim.SetFloat("IdleToRun", 1.0f);
+                    if (inCombat)
+                    {
+                        swordAnim.SetFloat("IdleToRun", 1.5f);
+                    }
                     torchAnim.SetFloat("IdleToRun", 1.0f);
                     mapAnim.SetFloat("IdleToRun", 1.0f);
                     moving = false;
@@ -190,10 +197,23 @@ public class CharController : MonoBehaviour
                 if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                 {
                     transform.Translate(moveDirection.normalized * ((ps.getSpeed() * 1.75f) * Time.fixedDeltaTime));
+
+                    if (moving == false)
+                    {
+                        isSprinting = false;
+                    }
+                    else
+                    {
+                        isSprinting = true;
+                    }
+
                 }
                 else
                 {
                     transform.Translate(moveDirection.normalized * (ps.getSpeed() * Time.fixedDeltaTime));
+                    
+                    isSprinting = false;
+                    
                 }
 
             }

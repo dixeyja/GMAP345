@@ -14,8 +14,7 @@ public class enemyBattleBehavior : MonoBehaviour
     public int maxHealth;
     public combatManager cM;
 
-    private bool alive = true;
-    private bool spotted = false;
+    public bool alive = true;
 
 
     // Start is called before the first frame update
@@ -81,18 +80,18 @@ public class enemyBattleBehavior : MonoBehaviour
             //anim.SetBool("isWalking", false);
            // anim.SetBool("isAttacking", false);
             //anim.SetBool("isHit", false);
-            speed = 0;
+            //speed = 0;
             if (alive)
             {
                 cM.addEnemiesBeat();
                 playerCharacter.GetComponent<CharController>().ps.sanGain(10);
                 alive = false;
-                ResetStatus();
+                //ResetStatus();
                 gameObject.SetActive(false);
             }
 
         }
-        Debug.Log("Enemy Battler Health:" + health.ToString());
+        //Debug.Log("Enemy Battler Health:" + health.ToString());
     }
 
     private void OnTriggerEnter(Collider other)

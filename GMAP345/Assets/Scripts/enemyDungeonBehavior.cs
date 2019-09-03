@@ -35,7 +35,7 @@ public class enemyDungeonBehavior : MonoBehaviour
         float angle = Vector3.Angle(direction, this.transform.forward);
 
 
-        if (playerCharacter.GetComponent<CharController>().torchAnim.GetBool("isOut"))
+        if (playerCharacter.GetComponent<CharController>().torchAnim.GetBool("isOut") || playerCharacter.GetComponent<CharController>().isSprinting)
         {
             if (Vector3.Distance(playerCharacter.transform.position, this.transform.position) < 3.0f * sightRange && angle < sightAngle)
             {
@@ -43,8 +43,8 @@ public class enemyDungeonBehavior : MonoBehaviour
 
                 this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), 0.1f);
 
-                anim.SetBool("isWalking", true);
-                anim.SetBool("isIdle", false);
+                //anim.SetBool("isWalking", true);
+                //anim.SetBool("isIdle", false);
                 transform.Translate(0, 0, speed * Time.deltaTime);
                 if (!spotted)
                 {
@@ -60,9 +60,9 @@ public class enemyDungeonBehavior : MonoBehaviour
                     PlayerEscaped.Raise();
                 }
                 spotted = false;
-                anim.SetBool("isIdle", true);
-                anim.SetBool("isWalking", false);
-                anim.SetBool("isAttacking", false);
+                //anim.SetBool("isIdle", true);
+                //anim.SetBool("isWalking", false);
+                //anim.SetBool("isAttacking", false);
             }
         }
         else
@@ -73,8 +73,8 @@ public class enemyDungeonBehavior : MonoBehaviour
 
                 this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), 0.1f);
 
-                anim.SetBool("isWalking", true);
-                anim.SetBool("isIdle", false);
+                //anim.SetBool("isWalking", true);
+                //anim.SetBool("isIdle", false);
                 transform.Translate(0, 0, speed * Time.deltaTime);
                 if (!spotted)
                 {
@@ -90,9 +90,9 @@ public class enemyDungeonBehavior : MonoBehaviour
                     PlayerEscaped.Raise();
                 }
                 spotted = false;
-                anim.SetBool("isIdle", true);
-                anim.SetBool("isWalking", false);
-                anim.SetBool("isAttacking", false);
+                //anim.SetBool("isIdle", true);
+                //anim.SetBool("isWalking", false);
+                //anim.SetBool("isAttacking", false);
             }
         }
     }

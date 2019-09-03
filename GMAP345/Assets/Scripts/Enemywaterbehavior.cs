@@ -19,7 +19,6 @@ public class Enemywaterbehavior : MonoBehaviour
     private TurretShooter tShoot;
 
     private bool alive = true;
-    private bool spotted = false;
 
     private void OnEnable()
     {
@@ -109,7 +108,7 @@ public class Enemywaterbehavior : MonoBehaviour
             //anim.SetBool("isWalking", false);
             // anim.SetBool("isAttacking", false);
             //anim.SetBool("isHit", false);
-            speed = 0;
+            //speed = 0;
             if (alive)
             {
                 cM.addEnemiesBeat();
