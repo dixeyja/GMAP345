@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ps: {fileID: 11400000, guid: 8f2b71a5d32fcf442aea6669e5e06daa, type: 2}
+  isSprinting: 0
   inCombat: 0
   sword: {fileID: 6019724368979840349}
   torchAnim: {fileID: 2472070878288880942}
@@ -252,8 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c138cf7e5b753648a04a0118138ae42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 5
-  smoothing: 2
+  sensitivity: 2.5
+  smoothing: 1.5
 --- !u!81 &2018694315900990322
 AudioListener:
   m_ObjectHideFlags: 0
@@ -302,7 +303,7 @@ BoxCollider:
   m_GameObject: {fileID: 5769533893320416934}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.010333031, y: 0.00933108, z: 0.0063405694}
   m_Center: {x: 0.0005203478, y: 0.0035641731, z: -0.00038777475}
@@ -376,10 +377,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2018694315900990323}
     m_Modifications:
-    - target: {fileID: 100000, guid: 28ee7ac93c921924a955dd4cd44081f5, type: 3}
-      propertyPath: m_Name
-      value: Map
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 28ee7ac93c921924a955dd4cd44081f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.573
@@ -432,14 +429,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 40.67284
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 28ee7ac93c921924a955dd4cd44081f5, type: 3}
+      propertyPath: m_Name
+      value: Map
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 28ee7ac93c921924a955dd4cd44081f5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f7f15baeab3170b43953dda299d91193, type: 2}
-    - target: {fileID: 2300000, guid: 28ee7ac93c921924a955dd4cd44081f5, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28ee7ac93c921924a955dd4cd44081f5, type: 3}
 --- !u!1 &219061485 stripped
@@ -547,14 +544,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2018694315900990323}
     m_Modifications:
-    - target: {fileID: 100000, guid: a9ab77b8c4d40db4b97e0d2ba5ba2a3e, type: 3}
-      propertyPath: m_Name
-      value: Sword_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: a9ab77b8c4d40db4b97e0d2ba5ba2a3e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a9ab77b8c4d40db4b97e0d2ba5ba2a3e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.369
@@ -606,6 +595,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: a9ab77b8c4d40db4b97e0d2ba5ba2a3e, type: 3}
       propertyPath: m_LocalScale.y
       value: 109.09212
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a9ab77b8c4d40db4b97e0d2ba5ba2a3e, type: 3}
+      propertyPath: m_Name
+      value: Sword_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a9ab77b8c4d40db4b97e0d2ba5ba2a3e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: a9ab77b8c4d40db4b97e0d2ba5ba2a3e, type: 3}
       propertyPath: m_Materials.Array.data[0]

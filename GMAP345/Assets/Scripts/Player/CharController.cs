@@ -65,10 +65,10 @@ public class CharController : MonoBehaviour
 
         attackCooldown -= Time.deltaTime;
 
-        if (Input.GetKeyDown("escape"))
-        {
-            Application.Quit();
-        }
+        //if (Input.GetKeyDown("escape"))
+        //{
+        //    Application.Quit();
+        //}
 
         if (inCombat)
         {
